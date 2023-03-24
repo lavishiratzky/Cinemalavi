@@ -7,7 +7,7 @@ function Contact_us(): JSX.Element {
     const schema = yup.object().shape({
         firstName:
             yup.string()
-            .required("first name is required"),
+            .required("first name is required",),
         lastName:
             yup.string()
                 .required("Last name is required"),
