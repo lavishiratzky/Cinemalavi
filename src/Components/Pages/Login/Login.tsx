@@ -9,7 +9,7 @@ function Login(): JSX.Element {
         email:
         yup.string()
         .email("Invalid Email format")
-        .required("Email is required"),
+        .required("Email is required!"),
     password:
        yup.string()
        .length(4,"Password must be at least 4 characters")
