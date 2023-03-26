@@ -30,6 +30,7 @@ function Login(): JSX.Element {
 			<h1>This is Login</h1>      
 <form onSubmit={handleSubmit(sendDataToRemoteServer)}>
 
+
 {errors?.email&&<span>{errors.email.message}</span>}
 <input {...register ("email")} type="email" placeholder="Email..."/>
 
