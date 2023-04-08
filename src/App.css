@@ -25,7 +25,11 @@
 .App .Menu{
   width: 100%;
   grid-column:span 2;
-  background-color: hsl(194, 82%, 74%);;
+  background-color: hsl(194, 82%, 74%);
+  font-size: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 } 
 
 
