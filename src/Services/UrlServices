@@ -1,0 +1,17 @@
+abstract class Global{
+}
+class Development extends Global{
+    public urls = {
+        movies: "https://restcountries.com/v2/all/",
+       
+    }
+}
+class Production extends Global{
+    public urls ={
+        movies: 'www.clalit-app.com/api/tasks',
+       
+    }
+}
+const urlService = (process.env.NODE_ENV === "production") ? new Production() : new Development();
+
+export default urlService;
