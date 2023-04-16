@@ -1,13 +1,14 @@
 import "./Movies.css";
-import { Root } from "../../../Models/MovieModel";
+import { Root2 } from "../../../Models/MovieModel";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import notifyService from "../../../Services/NotificationServices";
+import MovieCard from "../MovieCard/MovieCard";
 function Movies(): JSX.Element {
-    const[movies,setMovies] = useState<Root[]>([]);
+    const[movies,setMovies] = useState<Root2[]>([]);
     const url ="https://raw.githubusercontent.com/Adiper84/moviesDB/main/moviesdb.txt"
     useEffect(() => {
-        axios.get<Root[]>(url)
+        axios.get<Root2[]>(url)
         .then(res =>{setMovies(res.data) ;
             notifyService.success("Data was collected!!")}
        )
@@ -20,8 +21,10 @@ function Movies(): JSX.Element {
         <div className="Movies">
             <h1>These are the movies available</h1>
            
-            {movies.map(m =><p key={'movie'+ m.id}>{m.id},{m.title},{m.userId},{m.completed}</p>)}
-		
+            {movies.map(m =><MovieCard key={'movie'+ m.id} movie={m}/>)}
+            {/* <p key={'movie'+ m.id}>{m.id},{m.name},{m.length_minutes} min,{m.genre} ,{m.director}, {m.description},{m.image}
+             </p>)}
+		 */}
         </div>
     );
 }

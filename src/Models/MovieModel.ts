@@ -1,11 +1,16 @@
 
+export type Root = Root2[]
 
-export interface Root {
-  userId: number
+export interface Root2 {
   id: number
-  title: string
-  completed: boolean
+  name: string
+  director: string
+  genre: string
+  length_minutes: number
+  description: string
+  image: string
 }
+
 
 
 

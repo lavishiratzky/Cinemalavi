@@ -45,3 +45,22 @@
   /* color: white; */
   border: 2px solid ;
 }
+.MovieCard {
+  display: inline-block;
+  width: 300px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.MovieCard p:first-child {
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.MovieCard img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
