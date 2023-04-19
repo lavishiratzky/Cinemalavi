@@ -1,0 +1,27 @@
+.SocialMedia a {
+	display: inline-block;
+	margin-right: 10px;
+	color: #333;
+	text-decoration: none;
+	transition: all 0.2s ease-in-out;
+  }
+  
+  .SocialMedia a:hover {
+	color: #0077b5;
+  }
+  
+  .SocialMedia a:focus {
+	outline: none;
+  }
+  
+  .SocialMedia a:first-child {
+	margin-left: 0;
+  }
+  
+  .SocialMedia a:last-child {
+	margin-right: 0;
+  }
+  .SocialMedia > * {
+margin-left: 200px;
+  }
+  

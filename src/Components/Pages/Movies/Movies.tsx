@@ -1,14 +1,14 @@
 import "./Movies.css";
-import { Root2 } from "../../../Models/MovieModel";
+import { MovieModel } from "../../../Models/MovieModel";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import notifyService from "../../../Services/NotificationServices";
 import MovieCard from "../MovieCard/MovieCard";
 function Movies(): JSX.Element {
-    const[movies,setMovies] = useState<Root2[]>([]);
+    const[movies,setMovies] = useState<MovieModel[]>([]);
     const url ="https://raw.githubusercontent.com/Adiper84/moviesDB/main/moviesdb.txt"
     useEffect(() => {
-        axios.get<Root2[]>(url)
+        axios.get<MovieModel[]>(url)
         .then(res =>{setMovies(res.data) ;
             notifyService.success("Data was collected!!")}
        )

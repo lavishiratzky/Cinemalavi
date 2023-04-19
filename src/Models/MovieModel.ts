@@ -1,7 +1,7 @@
 
-export type Root = Root2[]
+export type Root = MovieModel[]
 
-export interface Root2 {
+export interface MovieModel {
   id: number
   name: string
   director: string
