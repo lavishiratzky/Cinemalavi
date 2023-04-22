@@ -1,7 +1,7 @@
-import { Root2 } from "../../../Models/MovieModel";
+import { MovieModel } from "../../../Models/MovieModel";
 import "./MovieCard.css";
 interface MovieCardProps{
-    movie:Root2
+    movie:MovieModel
 }
 function MovieCard(props:MovieCardProps): JSX.Element {
     return (

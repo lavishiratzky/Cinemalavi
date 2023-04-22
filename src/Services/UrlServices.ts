@@ -2,7 +2,7 @@ abstract class Global{
 }
 class Development extends Global{
     public urls = {
-        movies: "https://restcountries.com/v2/all/",
+        movies: "https://raw.githubusercontent.com/Adiper84/moviesDB/main/moviesdb.txt",
        
     }
 }

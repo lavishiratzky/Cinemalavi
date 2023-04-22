@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { themeReducer } from './ThemeAppState';
-// import { tasksReducer } from './MovieAppState';
+import { moviesReducer } from './MoviesAppState';
 
-const rootReducer={
-    themeReducer:themeReducer
-    // movies:moviesr
+
+
+
+const rootReducer = {
+    themeReducer:themeReducer,
+    moviesReducer : moviesReducer,
 };
 
 const store = configureStore({
