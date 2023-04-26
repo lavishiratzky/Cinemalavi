@@ -8,7 +8,7 @@ function Menu(): JSX.Element {
         <Link to ="/register">Register</Link>	
         <Link to ="/contact_us">Contact_us</Link>
         <Link to ="about">About</Link>
-        <Link to ="map">Map</Link>
+        <Link to ="AddMovie">AddMovie</Link>
         <Link to ="movies">Movies</Link>
         
 
