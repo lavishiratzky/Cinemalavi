@@ -23,7 +23,7 @@ function AddMovie(): JSX.Element {
         id:
             yup.string()
                 .required("Id is required"),
-        name:
+         name:
             yup.string()
                 .required("Title is required"),
         director:
@@ -81,14 +81,14 @@ function AddMovie(): JSX.Element {
         <div className="AddMovie">
             <form onSubmit={handleSubmit(sendDataToRemoteServer)}>
 
-                {errors?.id && <span>{errors.id.message}</span>}
-                <input  {...register("id")} type="text" placeholder="Id..." name="Id" />
+            {errors?.id && <span>{errors.id.message}</span>}
+                <input {...register("id")} type="text" placeholder="Id..." name="id" />
 
                 {errors?.name && <span>{errors.name.message}</span>}
                 <input {...register("name")} type="text" placeholder="name..." name="name" />
 
                 {errors?.director && <span>{errors.director.message}</span>}
-                <input {...register("director")} type="director" placeholder="director..." name="director" />
+                <input {...register("director")} type="text" placeholder="director..." name="director" />
 
                 {
                     errors.genre?.message ?
@@ -115,7 +115,7 @@ function AddMovie(): JSX.Element {
                     <option value="HISTORY">History</option>
                 </select>
                 {errors?.length_minutes && <span>{errors.length_minutes.message}</span>}
-                <input {...register("length_minutes")} type="length_minutes" placeholder="length..." name="length_minutes" />
+                <input {...register("length_minutes")} type="text" placeholder="length..." name="length_minutes" />
 
                 {errors?.description && <span>{errors.description.message}</span>}
                 <input  {...register("description")} type="text" placeholder="description..." name="description" />
