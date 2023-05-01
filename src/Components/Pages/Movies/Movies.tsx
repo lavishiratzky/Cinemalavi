@@ -48,13 +48,13 @@ function Movies(): JSX.Element {
          </select></h1> 
             
  {movies.filter((val)=>{
-                if (searchTerm===""){
-                    return store.dispatch
-                }
-                else if(val.name.toLowerCase().includes(searchTerm.toLowerCase())){
+                 if(val.name.toLowerCase().includes(searchTerm.toLowerCase())){
                     return val
                 }
-                return false;
+                else if (searchTerm===""){
+                    return store.dispatch
+                }
+                // return false;
             }
             ).filter((val)=>{
                 if(val.genre.toLowerCase().split(',').map(v=>v.trim()).includes(selectedGenre.toLowerCase()) ) {

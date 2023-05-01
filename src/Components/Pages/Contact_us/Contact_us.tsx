@@ -2,7 +2,7 @@ import "./Contact_us.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ContactUsModel } from "../../../Models/ContactUs";
+import { ContactUsModel } from "../../../Models/ContactUsModel";
 function Contact_us(): JSX.Element {
     const schema = yup.object().shape({
         firstName:
