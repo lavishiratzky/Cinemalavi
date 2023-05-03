@@ -49,7 +49,7 @@ function Order(): JSX.Element {
                 console.log(res.data);
                 // store.dispatch(addedTaskAction(res.data));
                 // Navigate to previous screen
-                navigate('/movies');
+                // navigate('/movies');
             })
             .catch(err => {
                 console.log(err);

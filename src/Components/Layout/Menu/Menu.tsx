@@ -6,10 +6,11 @@ function Menu(): JSX.Element {
 		<Link to ="/home">Home</Link>	
         <Link to ="/login">Login</Link>	
         <Link to ="/register">Register</Link>	
-        <Link to ="/contact_us">Contact_us</Link>
+        <Link to ="/contact_us">Contact us</Link>
         <Link to ="about">About</Link>
-        <Link to ="AddMovie">AddMovie</Link>
+        <Link to ="AddMovie">Add Movie</Link>
         <Link to ="movies">Movies</Link>
+        <Link to ="orderslist">Orders List</Link>
         
 
         </div>
