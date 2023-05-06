@@ -14,7 +14,6 @@ function MovieCard(props:MovieCardProps): JSX.Element {
             <img src={props.movie.image} alt="image" />
 			
         </div>
-        
     );
 }
 
