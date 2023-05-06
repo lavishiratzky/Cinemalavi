@@ -1,0 +1,103 @@
+/* .OrdersList {
+	
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    font-size: 16px;
+  }
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  thead th {
+    background-color: #f2f2f2;
+    color: #444;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tbody td:before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: inline-block;
+    width: 120px;
+  }
+
+  @media (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    tbody td:before {
+      content: attr(data-label);
+      font-weight: bold;
+      display: inline-block;
+      width: 98%;
+      margin-bottom: 10px;
+    }
+ 
+  }
+ */
+ .OrdersList {
+  position: relative;
+  padding-top: 50px; /* adjust padding as needed */
+}
+
+.OrdersList table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: -1px; /* adjust margin as needed */
+}
+
+.OrdersList thead,
+.OrdersList tbody {
+  position: relative;
+  display: block;
+}
+
+.OrdersList tbody {
+  height: 400px; /* adjust height as needed */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.OrdersList th,
+.OrdersList td {
+  padding: 8px;
+  text-align:left;
+}
+
+.OrdersList th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #f5f5f5;
+}
+
+.OrdersList .tablehead {
+  position: -webkit-sticky;
+  position:sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #f5f5f5;
+  padding: 8px;
+  margin: 0;
+}
+
+.OrdersList input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+

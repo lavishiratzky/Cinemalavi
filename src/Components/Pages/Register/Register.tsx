@@ -2,7 +2,7 @@ import "./Register.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { RegisterModel } from "../../../Models/Register";
+import { RegisterModel } from "../../../Models/RegisterModel";
 function Register(): JSX.Element {
     const schema = yup.object().shape({
         firstName:

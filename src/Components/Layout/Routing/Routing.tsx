@@ -10,6 +10,8 @@ import Map from "../../Pages/Map/Map";
 import "./Routing.css";
 import Movies from "../../Pages/Movies/Movies";
 import AddMovie from "../../Pages/AddMovie/AddMovie";
+import OrdersList from "../../Pages/OrdersList/OrdersList";
+import Order from "../../Pages/Order/Order";
 
 function Routing(): JSX.Element {
     return (
@@ -18,12 +20,14 @@ function Routing(): JSX.Element {
                 <Route path="/" element={<App/>}/>
                 <Route path="home" element={<Movies/>}/>
                 <Route index element ={<Home/>}/>
-                <Route path="login" element={<Login/>}/>
+                {/* <Route path="login" element={<Login/>}/>
                 <Route path="register" element={<Register/>}/>
                 <Route path="contact_us" element={<Contact_us/>}/>
-                <Route path="about" element={<About/>}/>
+                <Route path="about" element={<About/>}/> */}
                 <Route path="addmovie" element={<AddMovie/>}/>
                 <Route path="movies" element={<Movies/>}/>
+                <Route path="orderslist" element={<OrdersList/>}/>
+                <Route path="order" element={<Order/>}/>
                 <Route path="*" element={<Page404/>}/>
             </Routes>
         </div>

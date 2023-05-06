@@ -2,7 +2,7 @@ import "./Login.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { LoginModel } from "../../../Models/Login";
+import { LoginModel } from "../../../Models/LoginModel";
 import notifyService from "../../../Services/NotificationServices";
 function Login(): JSX.Element {
     const schema = yup.object().shape({
