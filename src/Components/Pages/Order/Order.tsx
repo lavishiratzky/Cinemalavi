@@ -74,14 +74,14 @@ function Order(): JSX.Element {
                     type="date"
                     placeholder="Order Date..." />
 {/* have to bring the name of the movies available from store */}
-                     {/* {errors?.MovieName && <span>{errors.MovieName.message}</span>}
-                     <select
+                 {errors?.MovieName && <span>{errors.MovieName.message}</span>}
+                 <select
                     {...register("MovieName")}
                     id="MovieName"
                     name="MovieName">
                     <option value="" disabled={true} selected style={{ color: 'gray' }}>Movie Name</option>
-                    <option value="{movies.map(m=> key={'movie' + m.id} movie={m})}"></option>
-                    </select> */}
+                    {movies.map(m=><option value="movie" key={'movie' + m.id}>movie= {m.name} </option>)}
+                    </select>
                     {errors.tickets?.message ?
                         <>
                             <span>{errors?.tickets?.message}</span>

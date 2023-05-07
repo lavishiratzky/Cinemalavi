@@ -10,9 +10,9 @@ import { useEffect, useState } from "react";
 function OrdersList(): JSX.Element {
     const [searchTerm,setSearchTerm]= useState<string>("")
     const tableHeaders = ["Order Id","Order Date", "Movie Id", "Movie Name","Tickets", "User Id","User Fname","User Lname", "Email"];
-    const[orders,setOrders] = useState<OrdersListModel[]>(store.getState().ordersReducer.orders);
+    const[orders ,setOrders] = useState<OrdersListModel[]>(store.getState().ordersReducer.orders);
     useEffect(() => {
-        if (orders?.length ===0){
+        if (orders.length ===0){
         axios.get<OrdersListModel[]>(urlService.urls.orders) 
         .then(res =>{setOrders(res.data);
         store.dispatch(gotAllOrdersAction(res.data))
@@ -27,9 +27,9 @@ function OrdersList(): JSX.Element {
     return (
         <div className="OrdersList">
             
-            <h1 className ="tablehead"><input type ="text" placeholder="Type a number of an Order" onChange={event=>{setSearchTerm(event.target.value)}}/></h1>
+            <h1 className ="tableHead"><input type ="text" placeholder="Type a number of an Order" onChange={event=>{setSearchTerm(event.target.value)}}/></h1>
 		<table>
-            <thead className ="tablehead">
+            <thead className ="tableHead">
                 <tr>
                 {tableHeaders.map(str=> <th key = {str}>{str}</th>)}
                 </tr>
