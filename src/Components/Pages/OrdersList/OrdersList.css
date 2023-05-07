@@ -82,7 +82,7 @@ table {
   background-color: #f5f5f5;
 }
 
-.OrdersList .tablehead {
+.OrdersList .tableHead {
   position: -webkit-sticky;
   position:sticky;
   top: 0;

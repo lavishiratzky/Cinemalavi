@@ -24,9 +24,9 @@ function Routing(): JSX.Element {
                 <Route path="register" element={<Register/>}/>
                 <Route path="contact_us" element={<Contact_us/>}/>
                 <Route path="about" element={<About/>}/> */}
-                <Route path="addmovie" element={<AddMovie/>}/>
+                <Route path="addMovie" element={<AddMovie/>}/>
                 <Route path="movies" element={<Movies/>}/>
-                <Route path="orderslist" element={<OrdersList/>}/>
+                <Route path="ordersList" element={<OrdersList/>}/>
                 <Route path="order" element={<Order/>}/>
                 <Route path="*" element={<Page404/>}/>
             </Routes>

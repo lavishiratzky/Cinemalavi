@@ -108,7 +108,7 @@ function Order(): JSX.Element {
                 {errors?.email && <span>{errors.email.message}</span>}
                 <input {...register("email")} type="email" placeholder="Email..." />
 
-{/* butoon is not working yet */}
+{/* button is not working yet */}
                 <button type="submit" disabled={!isValid}>Send</button>
             </form>
         </div>
