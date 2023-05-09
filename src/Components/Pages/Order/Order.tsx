@@ -15,6 +15,7 @@ import { MovieModel } from "../../../Models/MovieModel";
 
 
 function Order(): JSX.Element {
+    const[selectedMovie, setSelectedMovie] =useState<string>("")
     const[movies,setMovies] = useState<MovieModel[]>(store.getState().moviesReducer.movies);
     const navigate = useNavigate();
     const schema = yup.object().shape({
@@ -77,11 +78,14 @@ function Order(): JSX.Element {
                  {errors?.MovieName && <span>{errors.MovieName.message}</span>}
                  <select
                     {...register("MovieName")}
-                    id="MovieName"
-                    name="MovieName">
-                    <option value="" disabled={true} selected style={{ color: 'gray' }}>Movie Name</option>
-                    {movies.map(m=><option value="movie" key={'movie' + m.id}>movie= {m.name} </option>)}
+                    name="MovieName"
+                    value={selectedMovie}
+                    onChange={e=>setSelectedMovie(e.target.value)}
+                   >
+                        <option value="" selected style={{ color: 'gray' }}>Movie Name</option>
+                        {movies.map((m)=>(<option key={m.name} value={m.name}>{m.name}</option>))}
                     </select>
+                    console.console.log({selectedMovie});
                     {errors.tickets?.message ?
                         <>
                             <span>{errors?.tickets?.message}</span>
