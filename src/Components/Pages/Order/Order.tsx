@@ -19,16 +19,18 @@ function Order(): JSX.Element {
     const[movies,setMovies] = useState<MovieModel[]>(store.getState().moviesReducer.movies);
     const navigate = useNavigate();
     const schema = yup.object().shape({
-        orderDate:
-            yup.string()
-                .required("Order date is required"),
+
+         orderDate:
+            yup.date()
+            .required("Order date is required"),
+                
         movieName:
             yup.string()
                 .required("Movie name  is required"),
         tickets:
             yup.number()
                 .required("Number of tickets is required"),
-        UserFirstName:
+        userFirstName:
             yup.string()
                 .required("First name name is required"),
         userFamilyName:
@@ -42,6 +44,7 @@ function Order(): JSX.Element {
     })
     const { register, handleSubmit, formState: { errors, isDirty, isValid } } =
         useForm<OrderModel>({ mode: "all", resolver: yupResolver(schema) });
+        
     const sendDataToRemoteServer = (Order: OrderModel) => {
         axios.post(urlService.urls.orders)
         .then(res => {
@@ -59,7 +62,7 @@ function Order(): JSX.Element {
     return (
         <div className="Order">
             <form onSubmit={handleSubmit(sendDataToRemoteServer)}>
-                {
+            {
                     errors.OrderDate?.message ?
                         <>
                             <span>{errors?.OrderDate?.message}</span>
@@ -75,7 +78,7 @@ function Order(): JSX.Element {
                     type="date"
                     placeholder="Order Date..." />
 {/* have to bring the name of the movies available from store */}
-                 {errors?.MovieName && <span>{errors.MovieName.message}</span>}
+{errors?.MovieName && <span>{errors.MovieName.message}</span>}
                  <select
                     {...register("MovieName")}
                     name="MovieName"
@@ -85,7 +88,7 @@ function Order(): JSX.Element {
                         <option value="" selected style={{ color: 'gray' }}>Movie Name</option>
                         {movies.map((m)=>(<option key={m.name} value={m.name}>{m.name}</option>))}
                     </select>
-                    console.console.log({selectedMovie});
+                console.log({selectedMovie});
                     {errors.tickets?.message ?
                         <>
                             <span>{errors?.tickets?.message}</span>
@@ -103,7 +106,7 @@ function Order(): JSX.Element {
                     placeholder="tickets..." />
 
 
-                {errors?.UserFirstName && <span>{errors.UserFirstName.message}</span>}
+{errors?.UserFirstName && <span>{errors.UserFirstName.message}</span>}
                 <input {...register("UserFirstName")} type="text" placeholder="First Name..." />
 
                 {errors?.UserFamilyName && <span>{errors.UserFamilyName.message}</span>}

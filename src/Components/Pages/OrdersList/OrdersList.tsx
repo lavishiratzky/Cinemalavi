@@ -1,5 +1,5 @@
 import axios from "axios";
-import { OrdersListModel } from "../../../Models/OrdersListModel";
+import { OrderModel } from "../../../Models/OrderModel";
 import store from "../../../Redux/Store";
 import "./OrdersList.css";
 import urlService from "../../../Services/UrlServices";
@@ -10,10 +10,10 @@ import { useEffect, useState } from "react";
 function OrdersList(): JSX.Element {
     const [searchTerm,setSearchTerm]= useState<string>("")
     const tableHeaders = ["Order Id","Order Date", "Movie Id", "Movie Name","Tickets", "User Id","User Fname","User Lname", "Email"];
-    const[orders ,setOrders] = useState<OrdersListModel[]>(store.getState().ordersReducer.orders);
+    const[orders ,setOrders] = useState<OrderModel[]>(store.getState().ordersReducer.orders);
     useEffect(() => {
         if (orders.length ===0){
-        axios.get<OrdersListModel[]>(urlService.urls.orders) 
+        axios.get<OrderModel[]>(urlService.urls.orders) 
         .then(res =>{setOrders(res.data);
         store.dispatch(gotAllOrdersAction(res.data))
             notifyService.success("Orders was collected!!")}

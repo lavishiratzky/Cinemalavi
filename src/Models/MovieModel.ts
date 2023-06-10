@@ -10,3 +10,4 @@ export interface MovieModel {
   description: string
   image: string
 }
+

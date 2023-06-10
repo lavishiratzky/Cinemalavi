@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { OrdersListModel } from "../Models/OrdersListModel";
+import { OrderModel } from "../Models/OrderModel";
 
 interface MoviesState{
-   orders: OrdersListModel[]
+   orders: OrderModel[]
 }
 
 const initialState: MoviesState ={
@@ -21,16 +21,16 @@ const ordersSlice = createSlice({
     name: "orders",
     initialState,
     reducers: {
-      gotAllOrdersAction(state, action: PayloadAction<OrdersListModel[]>) {
+      gotAllOrdersAction(state, action: PayloadAction<OrderModel[]>) {
         state.orders = action.payload;
       },
-      gotSingleOrderAction(state, action: PayloadAction<OrdersListModel>) {
+      gotSingleOrderAction(state, action: PayloadAction<OrderModel>) {
         state.orders.push(action.payload);
       },
-      addedOrderAction(state, action: PayloadAction<OrdersListModel>) {
+      addedOrderAction(state, action: PayloadAction<OrderModel>) {
         state.orders.push(action.payload);
       },
-      updatedOrderACtion(state, action: PayloadAction<OrdersListModel>) {
+      updatedOrderACtion(state, action: PayloadAction<OrderModel>) {
         const idx = state.orders.findIndex(
           (order) => order.OrderID === action.payload.OrderID
         );
