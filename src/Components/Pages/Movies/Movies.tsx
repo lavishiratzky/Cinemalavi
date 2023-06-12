@@ -47,26 +47,28 @@ function Movies(): JSX.Element {
              <option value="Sci-Fi">Sci-Fi</option>
          </select></h1> 
             
- {movies.filter((val)=>{
-                 if(val.name.toLowerCase().includes(searchTerm.toLowerCase())){
+ {movies
+ .filter((val)=>{
+                 if(val.name?.toLowerCase().includes(searchTerm.toLowerCase())){
                     return val
                 }
                 else if (searchTerm===""){
                     return store.dispatch
                 }
-                // return false;
-            }
-            ).filter((val)=>{
-                if(val.genre.toLowerCase().split(',').map(v=>v.trim()).includes(selectedGenre.toLowerCase()) ) {
+                return false;
+            })
+            .filter((val)=>{
+                if(val.genre?.toLowerCase().split(',').map(v=>v.trim()).includes(selectedGenre.toLowerCase()) ) {
                     return true
                 }
                 else if(selectedGenre ==='none') {
                     return true
                 }
-                return false;
-            }).map(m=><MovieCard key={'movie' + m.id} movie={m}/>)}
+             return false;
+              })
+              .map(m=><MovieCard key={'movie' + m.movieId} movie={m}/>)}
 {/* TO SHOW ONLY THE FIRST 5 USE THIS BEFORE MAP .slice(0,5) */}
-        
+ {/* }).map(m=><MovieCard key={'movie' + m.id} movie={m}/>)}     */}
 
             
 		

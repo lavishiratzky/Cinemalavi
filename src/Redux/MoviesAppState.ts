@@ -32,12 +32,14 @@ const moviesSlice = createSlice({
       },
       updatedMovieACtion(state, action: PayloadAction<MovieModel>) {
         const idx = state.movies.findIndex(
-          (movie) => movie.id === action.payload.id
+          // (movie) => movie.id === action.payload.id
+          (movie) => movie.movieId=== action.payload.movieId
         );
         state.movies[idx] = action.payload;
       },
       deletedMovieAction(state, action: PayloadAction<number>) {
-        state.movies = state.movies.filter((movie) => movie.id !== action.payload);
+        // state.movies = state.movies.filter((movie) => movie.id !== action.payload);
+        state.movies = state.movies.filter((movie) => movie.movieId !== action.payload);
       },
       removeMovies(state) {
         state.movies = [];

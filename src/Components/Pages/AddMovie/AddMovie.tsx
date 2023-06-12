@@ -12,17 +12,20 @@ import notifyService from "../../../Services/NotificationServices";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 function AddMovie(): JSX.Element {
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [image, setImage] = useState('');
+    const [selectedGenre, setSelectedGenre]= useState<string>("none")
+  
+    // const [image, setImage] = useState('');
 
-    const handleChangeImage = (e: any) => {
-        setImage(URL.createObjectURL(e.target.files[0]));
-    }
+    // const handleChangeImage = (e: any) => {
+    //     setImage(URL.createObjectURL(e.target.files[0]));
+    //}
     const schema = yup.object().shape({
-        id:
-            yup.string()
-                .required("Id is required"),
+        //id:
+        // yup.string()
+        //    .required("Id is required"),
          name:
             yup.string()
                 .required("Title is required"),
@@ -42,18 +45,10 @@ function AddMovie(): JSX.Element {
                 .min(3, 'Description must be at least 3 characters')
                 .max(30, 'Description must be at most 30 characters')
                 .required("Description is required"),
-        // image:
-        //     yup.mixed()
-        //         .test('required', "You need to provide a file", (value) => {
-        //             return value && value.length
-        //         })
-        //         .test("fileSize", "The file is too large", (value, context) => {
-        //             return value && value[0] && value[0].size <= 200000;
-        //         })
-        //         .test("type", "We only support png", function (value) {
-        //             return value && value[0] && value[0].type === "image/png";
-        //         })
-
+         image:
+         yup.string()
+         .typeError('you must enter a direction to the file')
+        
 
 
     });
@@ -68,7 +63,7 @@ function AddMovie(): JSX.Element {
                     notifyService.success('Added Movie Successfully');
                     console.log(res.data);
                     // store.dispatch(addedTaskAction(res.data));
-                    dispatch(addedMovieAction(res.data));
+                   dispatch(addedMovieAction(res.data));
                     // Navigate to previous screen
                     navigate('/movies');
                 })
@@ -81,29 +76,24 @@ function AddMovie(): JSX.Element {
         <div className="AddMovie">
             <form onSubmit={handleSubmit(sendDataToRemoteServer)}>
 
-            {errors?.id && <span>{errors.id.message}</span>}
-                <input {...register("id")} type="text" placeholder="Id..." name="id" />
+            {/* {errors?.id && <span>{errors.id.message}</span>}
+                <input {...register("id")} type="text" placeholder="Id..." name="id" /> 
+                {errors?.movieId && <span>{errors.movieId.message}</span>}
+                <input {...register("movieId")} type="text" placeholder="Id..." name="id" />*/}
 
                 {errors?.name && <span>{errors.name.message}</span>}
                 <input {...register("name")} type="text" placeholder="name..." name="name" />
 
                 {errors?.director && <span>{errors.director.message}</span>}
                 <input {...register("director")} type="text" placeholder="director..." name="director" />
-
                 {
-                    errors.genre?.message ?
-                        <>
-                            <span>{errors?.genre?.message}</span>
-                        </> :
-                        <>
-                            <label htmlFor="genre">Genre</label>
-                        </>
+                    errors.genre?.message ?   
+                    <> <span>{errors?.genre?.message}</span></> :
+                    <> <label htmlFor="genre">Genre</label> </>
                 }
                 {/* change the select to movie genre options */}
-                <select
-                    {...register("genre")}
-                    id="genre"
-                    name="genre" >
+                 <select
+                    {...register("genre")} id="genre"  name="genre" >
                     <option value="" disabled={true} selected style={{ color: "gray" }}>Movie Genre...</option>
                     <option value="DRAMA">Drama</option>
                     <option value="CRIME">Crime</option>
@@ -113,13 +103,17 @@ function AddMovie(): JSX.Element {
                     <option value="FANTASY">Fantasy</option>
                     <option value="ROMANCE">Romance</option>
                     <option value="HISTORY">History</option>
-                </select>
-                {errors?.length_minutes && <span>{errors.length_minutes.message}</span>}
-                <input {...register("length_minutes")} type="text" placeholder="length..." name="length_minutes" />
+                </select>  
+                {/* {errors?.length_minutes && <span>{errors.length_minutes.message}</span>}
+                <input {...register("length_minutes")} type="text" placeholder="length..." name="length_minutes" /> */}
+                {errors?.lengthMinutes && <span>{errors.lengthMinutes.message}</span>}
+                <input {...register("lengthMinutes")} type="text" placeholder="length..." name="length_minutes" />
 
                 {errors?.description && <span>{errors.description.message}</span>}
                 <input  {...register("description")} type="text" placeholder="description..." name="description" />
 
+                 {/*{errors?.image && <span>{errors.image.message}</span>}
+                <input  {...register("image")} type="text" placeholder="enter a direction to an image file" name="image" />
                 {
                     errors.image?.message ?
                         <>
@@ -138,8 +132,7 @@ function AddMovie(): JSX.Element {
                 <div className="wrap-box">
                     {image ? <img src={image} alt=""></img> : 'no image yet!'}
 
-                </div>
-
+                </div> */}
 
                 <button disabled={!isValid}>Submit</button>
             </form>
