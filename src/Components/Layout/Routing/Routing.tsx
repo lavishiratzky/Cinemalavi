@@ -22,7 +22,6 @@ function Routing(): JSX.Element {
                 <Route index element ={<Home/>}/>
                 <Route path="login" element={<Login/>}/>
                 <Route path="register" element={<Register/>}/>
-                <Route path="contact_us" element={<Contact_us/>}/>
                 {/* <Route path="about" element={<About/>}/> */}
                 <Route path="addMovie" element={<AddMovie/>}/>
                 <Route path="movies" element={<Movies/>}/>

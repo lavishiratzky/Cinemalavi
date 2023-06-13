@@ -11,7 +11,6 @@ function Movies(): JSX.Element {
     const[movies,setMovies] = useState<MovieModel[]>(store.getState().moviesReducer.movies);
     const [selectedGenre, setSelectedGenre]= useState<string>("none")
     const [searchTerm,setSearchTerm]= useState<string>("")
-    // const url ="https://raw.githubusercontent.com/Adiper84/moviesDB/main/moviesdb.txt"
     useEffect(() => {
         if (movies?.length ===0){
         axios.get<MovieModel[]>(urlService.urls.movies) 

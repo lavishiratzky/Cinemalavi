@@ -11,6 +11,9 @@ import { addedMovieAction } from "../../../Redux/MoviesAppState";
 import notifyService from "../../../Services/NotificationServices";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
+
+
 function AddMovie(): JSX.Element {
 
     const dispatch = useDispatch();
@@ -38,8 +41,8 @@ function AddMovie(): JSX.Element {
         length_minutes:
             yup.number()
                 .moreThan(1)
-                .typeError('Length Must be more than 1 min.')
-                .required("Length is required"),
+                .typeError('Length Must be more than 1 min.'),
+                // .required("Length is required"),
         description:
             yup.string()
                 .min(3, 'Description must be at least 3 characters')
@@ -57,13 +60,12 @@ function AddMovie(): JSX.Element {
         
         const sendDataToRemoteServer = (movie: MovieModel) => {
 
-            // axios.get(urlService.urls.tasks)
             axios.post(urlService.urls.movies, movie)
                 .then(res => {
+                    store.dispatch(addedMovieAction(res.data));
                     notifyService.success('Added Movie Successfully');
                     console.log(res.data);
-                    // store.dispatch(addedTaskAction(res.data));
-                   dispatch(addedMovieAction(res.data));
+                  
                     // Navigate to previous screen
                     navigate('/movies');
                 })
@@ -76,22 +78,17 @@ function AddMovie(): JSX.Element {
         <div className="AddMovie">
             <form onSubmit={handleSubmit(sendDataToRemoteServer)}>
 
-            {/* {errors?.id && <span>{errors.id.message}</span>}
-                <input {...register("id")} type="text" placeholder="Id..." name="id" /> 
-                {errors?.movieId && <span>{errors.movieId.message}</span>}
-                <input {...register("movieId")} type="text" placeholder="Id..." name="id" />*/}
-
                 {errors?.name && <span>{errors.name.message}</span>}
                 <input {...register("name")} type="text" placeholder="name..." name="name" />
 
                 {errors?.director && <span>{errors.director.message}</span>}
                 <input {...register("director")} type="text" placeholder="director..." name="director" />
-                {
+                {/*{
                     errors.genre?.message ?   
                     <> <span>{errors?.genre?.message}</span></> :
                     <> <label htmlFor="genre">Genre</label> </>
                 }
-                {/* change the select to movie genre options */}
+                 change the select to movie genre options 
                  <select
                     {...register("genre")} id="genre"  name="genre" >
                     <option value="" disabled={true} selected style={{ color: "gray" }}>Movie Genre...</option>
@@ -103,11 +100,12 @@ function AddMovie(): JSX.Element {
                     <option value="FANTASY">Fantasy</option>
                     <option value="ROMANCE">Romance</option>
                     <option value="HISTORY">History</option>
-                </select>  
-                {/* {errors?.length_minutes && <span>{errors.length_minutes.message}</span>}
-                <input {...register("length_minutes")} type="text" placeholder="length..." name="length_minutes" /> */}
-                {errors?.lengthMinutes && <span>{errors.lengthMinutes.message}</span>}
-                <input {...register("lengthMinutes")} type="text" placeholder="length..." name="length_minutes" />
+                </select>   */}
+                 {errors?.genre && <span>{errors.genre.message}</span>}
+                <input {...register("genre")} type="text" placeholder="genre..." name="genre" />
+
+                {errors?. lengthMinutes && <span>{errors. lengthMinutes.message}</span>}
+                <input {...register("lengthMinutes")} type="text" placeholder="length..." name="lengthMinutes" />
 
                 {errors?.description && <span>{errors.description.message}</span>}
                 <input  {...register("description")} type="text" placeholder="description..." name="description" />

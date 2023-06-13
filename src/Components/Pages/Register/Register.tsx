@@ -27,6 +27,9 @@ function Register(): JSX.Element {
             yup.string()
                 .email("Invalid Email format")
                 .required("Email is required"),
+        idNumber:
+             yup.string()
+            .required("ID number is required"),
         passWord:
             yup.string()
                 .length(4,"Password must be  4 characters")
@@ -34,7 +37,7 @@ function Register(): JSX.Element {
         confirm:
             yup.string()
                 .required("Confirm password is required")
-                .oneOf([yup.ref('passWord')]),     
+                .oneOf([yup.ref('passWord')], 'Your passwords does not match.')
     })
 
     const { register, handleSubmit, formState: { errors, isDirty, isValid } } =
@@ -46,21 +49,10 @@ function Register(): JSX.Element {
                 store.dispatch(addedUserAction(res.data))
             console.log("Sending to remote server");
             notifyService.success("Data was sent!!");
-             // Navigate to previous screen
-              navigate ('/movies'); 
+              navigate ('/orders'); 
             })
             .catch(err => console.log(err));
          }; 
-
-        // const sendTaskToRemoteServer = (task: TaskModel) => {
-        //     const url = "http://localhost:8080/api/tasks";
-        //     axios.post(url, task)
-        //         .then(res => {
-        //             console.log("Great Job!!1 Added successfully");
-        //             // Navigate to previous screen
-        //             navigate('/tasks');
-        //         })
-        //         .catch(err => console.log(err));
 
     return (
         <div className="Register">
@@ -75,6 +67,10 @@ function Register(): JSX.Element {
 
 {errors?.email&&<span>{errors.email.message}</span>}
 <input {...register("email")} type="email" placeholder="Email..." /> 
+
+{errors?.idNumber&&<span>{errors.idNumber.message}</span>}
+<input {...register("idNumber")} type="idNumber" placeholder="Id Number..." /> 
+
 
  {errors?.passWord&&<span>{errors.passWord.message}</span>}
 <input {...register("passWord")} type="password" placeholder="password..." /> 
