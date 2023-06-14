@@ -2,21 +2,21 @@ abstract class Global{
 }
 class Development extends Global{
     public urls = {
-        // https://raw.githubusercontent.com/Adiper84/moviesDB/main/moviesdb.txt
-        // http://localhost:5035/api/movies
+        
         movies: "http://localhost:5035/api/movies",
-       orders: "https://raw.githubusercontent.com/nogaoren/ordersDB/main/ordersDB",
+       orders:  "http://localhost:5035/api/orders",
        users: 'http://localhost:5035/api/users'
 
 
     }
 }
+
+//"https://raw.githubusercontent.com/nogaoren/ordersDB/main/ordersDB", nogas database
 class Production extends Global{
     public urls ={
-        // www.clalit-app.com/api/tasks
-        // http://localhost:5035/api/movies
+ 
         movies: 'http://localhost:5035/api/movies',
-        orders: "https://raw.githubusercontent.com/nogaoren/ordersDB/main/ordersDB",
+        orders: "http://localhost:5035/api/orders",
         users: 'http://localhost:5035/api/users'
 
     }

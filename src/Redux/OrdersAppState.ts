@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { OrderModel } from "../Models/OrderModel";
 
-interface MoviesState{
+interface OrderState{
    orders: OrderModel[]
 }
 
-const initialState: MoviesState ={
+const initialState:  OrderState ={
     orders:[],
 };
 
@@ -32,12 +32,12 @@ const ordersSlice = createSlice({
       },
       updatedOrderACtion(state, action: PayloadAction<OrderModel>) {
         const idx = state.orders.findIndex(
-          (order) => order.OrderID === action.payload.OrderID
+          (order) => order.orderId === action.payload.orderId
         );
         state.orders[idx] = action.payload;
       },
       deletedOrderAction(state, action: PayloadAction<number>) {
-        state.orders = state.orders.filter((order) => order.OrderID !== action.payload);
+        state.orders = state.orders.filter((order) => order.orderId !== action.payload);
       },
       removeOrders(state) {
         state.orders = [];

@@ -14,10 +14,7 @@ function Login(): JSX.Element {
        yup.string()
        .length(4,"Password must be at least 4 characters")
        .required(notifyService.failure),
-    confirm:
-        yup.string()
-        .required("Confirm password is required")
-        .oneOf([yup.ref('password')]) 
+   
     })
     const { register, handleSubmit, formState: { errors, isDirty, isValid } } =
         useForm<LoginModel>({ mode: "all", resolver: yupResolver(schema) });
@@ -37,8 +34,7 @@ function Login(): JSX.Element {
 {errors?.password&&<span>{errors.password.message}</span>}
 <input {...register ("password")} type="password" placeholder="password..." name="password"/>
 
-{errors?.confirm&&<span>{errors.confirm.message}</span>}
-<input {...register ("confirm")} type="password" placeholder="Confirm password" name="Confirm"/>
+
 <button  type ="submit" disabled={!isValid}>Send</button>
             </form>
         </div>

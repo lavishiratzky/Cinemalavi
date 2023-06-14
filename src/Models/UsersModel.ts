@@ -10,14 +10,3 @@ export interface UsersModel {
   idNumber?: string
   orders: any[]
 }
-// export type Root = Root2[]
-
-// export interface Root2 {
-//   userId: number
-//   firstName?: string
-//   lastName?: string
-//   email?: string
-//   passWord?: string
-//   idnumber: any
-//   orders: any[]
-// }

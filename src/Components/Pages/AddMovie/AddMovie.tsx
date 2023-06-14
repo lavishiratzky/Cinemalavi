@@ -50,7 +50,7 @@ function AddMovie(): JSX.Element {
                 .required("Description is required"),
          image:
          yup.string()
-         .typeError('you must enter a direction to the file')
+         .typeError('you must enter a direction to a picture form the web')
         
 
 
@@ -110,27 +110,9 @@ function AddMovie(): JSX.Element {
                 {errors?.description && <span>{errors.description.message}</span>}
                 <input  {...register("description")} type="text" placeholder="description..." name="description" />
 
-                 {/*{errors?.image && <span>{errors.image.message}</span>}
-                <input  {...register("image")} type="text" placeholder="enter a direction to an image file" name="image" />
-                {
-                    errors.image?.message ?
-                        <>
-                            <span>{errors?.image?.message}</span>
-                        </> :
-                        <>
-                            <label htmlFor="image">Image</label>
-                        </>
-                }
-                <input
-                    {...register("image", { onChange: (e) => { handleChangeImage(e) } })}
-                    id="image"
-                    name="image"
-                    type="file"
-                    placeholder="movie Image..." />
-                <div className="wrap-box">
-                    {image ? <img src={image} alt=""></img> : 'no image yet!'}
-
-                </div> */}
+                 {errors?.image && <span>{errors.image.message}</span>}
+                <input  {...register("image")} type="text" placeholder="enter a direction to an image from the web" name="image" />
+                
 
                 <button disabled={!isValid}>Submit</button>
             </form>

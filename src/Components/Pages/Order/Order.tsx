@@ -20,20 +20,20 @@ function Order(): JSX.Element {
     const navigate = useNavigate();
     const schema = yup.object().shape({
 
-         orderDate:
+        movieDate:
             yup.date()
             .required("Order date is required"),
                 
-        movieName:
-            yup.string()
-                .required("Movie name  is required"),
+         movieName:
+             yup.string()
+            .required(),
         tickets:
             yup.number()
                 .required("Number of tickets is required"),
         userFirstName:
             yup.string()
                 .required("First name name is required"),
-        userFamilyName:
+        userLastName:
             yup.string()
                 .required("family name name is required"),
         email:
@@ -46,12 +46,13 @@ function Order(): JSX.Element {
         useForm<OrderModel>({ mode: "all", resolver: yupResolver(schema) });
         
     const sendDataToRemoteServer = (Order: OrderModel) => {
-        axios.post(urlService.urls.orders)
+        axios.post(urlService.urls.orders, Order)
+
         .then(res => {
             notifyService.success('Added order Successfully');
             console.log(res.data);
             store.dispatch(addedOrderAction(res.data));
-           navigate(-1);
+           navigate('/orders');
         })
         .catch(err => {
             console.log(err);
@@ -63,38 +64,40 @@ function Order(): JSX.Element {
         <div className="Order">
             <form onSubmit={handleSubmit(sendDataToRemoteServer)}>
             {
-                    errors.OrderDate?.message ?
+                    errors.movieDate?.message ?
                         <>
-                            <span>{errors?.OrderDate?.message}</span>
+                            <span>{errors?.movieDate?.message}</span>
                         </> :
                         <>
-                            {/* <label htmlFor="orderDate">Order Date</label> */}
+                            <label htmlFor="movieDate">Movie Date</label>
                         </>
                 }
                 <input
-                    {...register("OrderDate")}
-                    id="orderDate"
-                    name="orderDate"
+                    {...register("movieDate")}
+                    id="movieDate"
+                    name="movieDate"
                     type="date"
                     placeholder="Order Date..." />
-{/* have to bring the name of the movies available from store */}
-{errors?.MovieName && <span>{errors.MovieName.message}</span>}
-                 <select
-                    {...register("MovieName")}
-                    name="MovieName"
-                    value={selectedMovie}
-                    onChange={e=>setSelectedMovie(e.target.value)}
-                   >
+
+{errors?.movieName && <span>{errors.movieName.message}</span>}
+    <select
+        {...register("movieName")}
+        id="movieName"
+        name="movieName"
+        value={selectedMovie}
+        onChange={e => setSelectedMovie(e.target.value)}
+    >
+
                         <option value="" selected style={{ color: 'gray' }}>Movie Name</option>
                         {movies.map((m)=>(<option key={m.name} value={m.name}>{m.name}</option>))}
                     </select>
-                console.log({selectedMovie});
+
                     {errors.tickets?.message ?
                         <>
                             <span>{errors?.tickets?.message}</span>
                         </> :
                         <>
-                            {/* <label htmlFor="tickets">tickets</label> */}
+                            <label htmlFor="tickets">tickets</label>
                         </>
                 }
                 <input
@@ -106,16 +109,15 @@ function Order(): JSX.Element {
                     placeholder="tickets..." />
 
 
-{errors?.UserFirstName && <span>{errors.UserFirstName.message}</span>}
-                <input {...register("UserFirstName")} type="text" placeholder="First Name..." />
+{errors?.userFirstName && <span>{errors.userFirstName.message}</span>}
+                <input {...register("userFirstName")} type="text" placeholder="First Name..." />
 
-                {errors?.UserFamilyName && <span>{errors.UserFamilyName.message}</span>}
-                <input {...register("UserFamilyName")} type="text" placeholder="Last Name..." />
+                {errors?.userLastName && <span>{errors.userLastName.message}</span>}
+                <input {...register("userLastName")} type="text" placeholder="Last Name..." />
 
                 {errors?.email && <span>{errors.email.message}</span>}
                 <input {...register("email")} type="email" placeholder="Email..." />
 
-{/* button is not working yet */}
                 <button type="submit" disabled={!isValid}>Send</button>
             </form>
         </div>
