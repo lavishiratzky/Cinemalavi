@@ -6,30 +6,36 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import notifyService from "../../../Services/NotificationServices";
 import MovieCard from "../MovieCard/MovieCard";
-import store from "../../../Redux/Store";
+import store, { RootState } from "../../../Redux/Store";
 import urlService from "../../../Services/UrlServices";
 import { OrderModel } from "../../../Models/OrderModel";
 import { Navigate, useNavigate } from "react-router-dom";
 import { addedOrderAction } from "../../../Redux/OrdersAppState";
 import { MovieModel } from "../../../Models/MovieModel";
+import { useSelector } from "react-redux";
+import { gotSingleUserAction } from "../../../Redux/UsersAppState";
+
 
 
 function Order(): JSX.Element {
-    const[selectedMovie, setSelectedMovie] =useState<string>("")
+//  const user =useSelector((state:RootState)=>state.usersReducer.users.)
+    const[selectedMovie, setSelectedMovie] =useState<string>();
     const[movies,setMovies] = useState<MovieModel[]>(store.getState().moviesReducer.movies);
     const navigate = useNavigate();
     const schema = yup.object().shape({
 
         movieDate:
             yup.date()
+            .min(new Date(), "Order date cannot be before today")
             .required("Order date is required"),
                 
          movieName:
              yup.string()
             .required(),
-        tickets:
-            yup.number()
-                .required("Number of tickets is required"),
+            tickets: yup
+            .number()
+            .positive("Number of tickets must be a positive value")
+            .required("Number of tickets is required"),
         userFirstName:
             yup.string()
                 .required("First name name is required"),
@@ -52,7 +58,7 @@ function Order(): JSX.Element {
             notifyService.success('Added order Successfully');
             console.log(res.data);
             store.dispatch(addedOrderAction(res.data));
-           navigate('/orders');
+           navigate('/order');
         })
         .catch(err => {
             console.log(err);
