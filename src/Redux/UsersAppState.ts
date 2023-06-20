@@ -17,6 +17,7 @@ GOT_SINGLE_USER = "GOT_SINGLE_USER",
   UPDATED_USER = "UPDATED_USER",
   DELETED_USER = "DELETED_USER",
   REMOVED_USER = "REMOVED_USER",
+  SET_USER="SET_USER"
 }
 const usersSlice = createSlice({
     name: "users",
@@ -44,9 +45,9 @@ const usersSlice = createSlice({
       },
       removeUsers(state) {
         state.users = [];
-      },
+      }
     },
-  });
+  })
   export const {
     gotAllUsersAction,
     gotSingleUserAction,
@@ -54,6 +55,8 @@ const usersSlice = createSlice({
     updatedUserACtion,
     deletedUserAction,
     removeUsers,
+    
+    
   } = usersSlice.actions;
   
   export const usersReducer =usersSlice.reducer;

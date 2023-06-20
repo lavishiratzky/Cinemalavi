@@ -23,6 +23,6 @@ export interface OrderModel {
   userLastName: string
   email: string
   movieDate: string
-  movie: any
-  user: any
+  movie?: any
+  user?: any
 }

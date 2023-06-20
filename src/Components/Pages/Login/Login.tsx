@@ -7,9 +7,10 @@ import notifyService from "../../../Services/NotificationServices";
 import axios from "axios";
 import urlService from "../../../Services/UrlServices";
 import store from "../../../Redux/Store";
-import { gotSingleUserAction } from "../../../Redux/UsersAppState";
+import { addedUserAction, gotSingleUserAction } from "../../../Redux/UsersAppState";
 import { useNavigate } from "react-router-dom";
 import { UsersModel } from "../../../Models/UsersModel";
+import { useState } from "react";
 
 
 function Login(): JSX.Element {
@@ -29,15 +30,20 @@ function Login(): JSX.Element {
         useForm<LoginModel>({ mode: "all", resolver: yupResolver(schema) });
 
         const sendDataToRemoteServer= (Login:LoginModel) =>{
-            axios.get(urlService.urls.users+"/"+Login.email+"/"+Login.password )
+            axios.post(urlService.urls.users+"/validate_user",Login)
             .then(res => {
-                const user:UsersModel=res.data
-                store.dispatch(gotSingleUserAction(user))
+                const user:UsersModel=res.data||{}
+                store.dispatch(addedUserAction(user))
+                console.log(user)
             console.log("Sending to remote server");
-            notifyService.success("Data was sent!!");
+            notifyService.success("Lets order a Movie!");
               navigate ('/order'); 
             })
-            .catch(err => console.log(err));
+            .catch(err =>{console.log(err)
+                notifyService.failure("You need to register before");
+                navigate ('/register');
+        });
+           
          }; 
  
     return (
@@ -47,10 +53,10 @@ function Login(): JSX.Element {
 
 
 {errors?.email&&<span>{errors.email.message}</span>}
-<input {...register ("email")} type="email" placeholder="Email..."/>
+<input {...register ("email")} type="email" placeholder="Email..." defaultValue={"lavi.shiratzky@gmail.com"}/>
 
 {errors?.password&&<span>{errors.password.message}</span>}
-<input {...register ("password")} type="password" placeholder="password..." name="password"/>
+<input {...register ("password")} type="password" placeholder="password..." name="password" defaultValue={"1234"}/>
 
 
 <button  type ="submit" disabled={!isValid}>Send</button>

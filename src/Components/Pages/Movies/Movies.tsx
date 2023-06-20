@@ -44,6 +44,7 @@ function Movies(): JSX.Element {
              <option value="Adventure">Adventure</option>
              <option value="Thriller">Thriller</option>
              <option value="Sci-Fi">Sci-Fi</option>
+             <option value="comedy">Comedy</option>
          </select></h1> 
             
  {movies

@@ -12,6 +12,7 @@ import Movies from "../../Pages/Movies/Movies";
 import AddMovie from "../../Pages/AddMovie/AddMovie";
 import OrdersList from "../../Pages/OrdersList/OrdersList";
 import Order from "../../Pages/Order/Order";
+import Success from "../../Pages/Success/Success";
 
 function Routing(): JSX.Element {
     return (
@@ -25,8 +26,9 @@ function Routing(): JSX.Element {
                 {/* <Route path="about" element={<About/>}/> */}
                 <Route path="addMovie" element={<AddMovie/>}/>
                 <Route path="movies" element={<Movies/>}/>
-                <Route path="orderslist" element={<OrdersList/>}/>
+                <Route path="ordersList" element={<OrdersList/>}/>
                 <Route path="order" element={<Order/>}/>
+                <Route path="Success" element={<Success/>}/>
                 <Route path="*" element={<Page404/>}/>
             </Routes>
         </div>

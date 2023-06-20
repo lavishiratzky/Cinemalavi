@@ -2,11 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { MovieModel } from "../Models/MovieModel";
 
 interface MoviesState{
-    movies: MovieModel[]
+    movies: MovieModel[];
+
 }
 
 const initialState: MoviesState ={
     movies:[],
+ 
+    
 };
 
 export enum ActionType {
@@ -32,13 +35,12 @@ const moviesSlice = createSlice({
       },
       updatedMovieACtion(state, action: PayloadAction<MovieModel>) {
         const idx = state.movies.findIndex(
-          // (movie) => movie.id === action.payload.id
           (movie) => movie.movieId=== action.payload.movieId
         );
         state.movies[idx] = action.payload;
       },
       deletedMovieAction(state, action: PayloadAction<number>) {
-        // state.movies = state.movies.filter((movie) => movie.id !== action.payload);
+        
         state.movies = state.movies.filter((movie) => movie.movieId !== action.payload);
       },
       removeMovies(state) {

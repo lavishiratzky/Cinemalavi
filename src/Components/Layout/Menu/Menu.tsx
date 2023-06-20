@@ -7,10 +7,10 @@ function Menu(): JSX.Element {
         <Link to ="/login">Login</Link>	
         <Link to ="/register">Register</Link>	
         {/* <Link to ="about">About</Link>  */}
-        <Link to ="AddMovie">AddMovie</Link>
+        {/* <Link to ="AddMovie">AddMovie</Link>
         <Link to ="movies">Movies</Link>
         <Link to ="ordersList">Orders List</Link>
-        <Link to ="order">Order</Link>
+        <Link to ="order">Order</Link> */}
         
 
         </div>
