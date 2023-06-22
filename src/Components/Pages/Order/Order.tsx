@@ -16,9 +16,10 @@ import { useSelector } from "react-redux";
 
 
 function Order(): JSX.Element {
-    const user = useSelector((state: RootState) => state.usersReducer.users[0]) || {};
+    const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};
     const [selectedMovie, setSelectedMovie] = useState<MovieModel | undefined>();    
     const[movies,setMovies] = useState<MovieModel[]>(store.getState().moviesReducer.movies);
+    const  selectMovie =useSelector((state: RootState) => state.moviesReducer.selectedMovie);
     const navigate = useNavigate();
     const schema = yup.object().shape({
 
@@ -32,28 +33,20 @@ function Order(): JSX.Element {
             .integer("Number of tickets must be an integer")
             .min(0, "Number of tickets cannot be negative")
             .required("Number of tickets is required"),
-        // userId:
-        //     yup.number(),
-        userFirstName:
-            yup.string()
-                .required("First name name is required"),
-        userLastName:
-            yup.string()
-                .required("family name name is required"),
-        email:
-            yup.string()
-                .email("Invalid Email format")
-                .required("Email is required!"),
+        
         
     })
     const { register, handleSubmit, formState: { errors, isDirty, isValid } } =
         useForm<OrderModel>({ mode: "all", resolver: yupResolver(schema) });
         
     const sendDataToRemoteServer = (Order: OrderModel) => {
-        Order.movieName = selectedMovie?.name || ''; // Include movieName in the order object
-        Order.movieId = selectedMovie?.movieId || 0;
-        Order.userId= user.userId
-        
+        Order.movieName = selectedMovie?.name || selectMovie?.name||"" // Include movieName in the order object
+        Order.movieId = selectedMovie?.movieId || selectMovie?.movieId||0;
+        Order.userId= user.userId;
+        Order.email = user.email||("");
+        Order.userFirstName = user.firstName||("");
+        Order.userLastName = user.lastName||("");
+
         axios.post(urlService.urls.orders, Order)
         .then((res) => {
             notifyService.success('Added order Successfully');
@@ -70,8 +63,9 @@ function Order(): JSX.Element {
   
     return (
         <div className="Order">
-            <label htmlFor="movieName">Movie Name</label>
-            <select
+            
+
+        <select
   id="movieId"
   name="movieId"
   value={selectedMovie?.movieId || ''}
@@ -104,11 +98,11 @@ function Order(): JSX.Element {
                     type="date"
                     placeholder="Order Date..." />
 
-                   
+                   <p>{selectMovie?.name}</p>
                  {errors.tickets?.message ? <>  <span>{errors?.tickets?.message}</span> </> :   <>  <label htmlFor="tickets">tickets</label> </>}
                  <input {...register("tickets")}id="tickets" name="tickets" type="number"step="1" min={0} placeholder="tickets..." />
                   
-                {errors?.userFirstName && <span>{errors.userFirstName.message}</span>}
+                {/* {errors?.userFirstName && <span>{errors.userFirstName.message}</span>}
                 <input {...register("userFirstName")} type="hidden" placeholder="First Name..." defaultValue={user?.firstName}/>
 
                 {errors?.userLastName && <span>{errors.userLastName.message}</span>}
@@ -117,17 +111,17 @@ function Order(): JSX.Element {
                 {errors?.email && <span>{errors.email.message}</span>}
                 <input {...register("email")} type="hidden" placeholder=" Email..."defaultValue={user?.email} /> 
 
-                {/* {errors?.userId && <span>{errors.userId.message}</span>}
+                {errors?.userId && <span>{errors.userId.message}</span>}
                 <input {...register("userId")}  type="hidden" placeholder=" userId.."defaultValue={user?.userId} /> */}
   
                 <button type="submit" disabled={!isValid}>Send</button>
             </form>
-            <p>{selectedMovie?.name}</p>
+            {/* <p>{selectedMovie?.name}</p>
             <p>{selectedMovie?.movieId}</p>
             <p>{user.email}</p>
             <p>{user.firstName}</p>
             <p>{user.lastName}</p>
-            <p>{user.userId}</p>
+            <p>{user.userId}</p> */}
             
            
             

@@ -6,7 +6,8 @@ function Menu(): JSX.Element {
 		<Link to ="/home">Home</Link>	
         <Link to ="/login">Login</Link>	
         <Link to ="/register">Register</Link>	
-        {/* <Link to ="about">About</Link>  */}
+        <Link to ="/about">About</Link> 
+        <Link to ="/map">General Info. </Link>
         {/* <Link to ="AddMovie">AddMovie</Link>
         <Link to ="movies">Movies</Link>
         <Link to ="ordersList">Orders List</Link>

@@ -14,7 +14,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid ;
+  border: 2px solid;
+  border-color: var(--secondary-color);
 }
 
 .App .Main{
@@ -22,19 +23,21 @@
   grid-column:span 10;
   /* background-color:var(--background-color); */
   border: 2px solid ;
+  border-color: var(--secondary-color); 
   overflow-y: auto;
 
 }
 .App .Menu{
   width: 100%;
   grid-column:span 2;
-  /* background-color:var(--background-color); */
-  font-size: 40px;
+  color: var(--primary-color);
+  font-size: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   border: 2px solid ;
-} 
+  border-color: var(--secondary-color);
+}
 
 
 .App .Footer{
@@ -44,6 +47,7 @@
   font-size: large;
   /* color: white; */
   border: 2px solid ;
+  border-color: var(--secondary-color); 
 }
 .MovieCard {
   display: inline-block;

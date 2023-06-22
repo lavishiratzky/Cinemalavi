@@ -11,11 +11,7 @@ import { addedUserAction } from "../../../Redux/UsersAppState";
 import store from "../../../Redux/Store";
 
 function Register(): JSX.Element {
-
-
     const navigate = useNavigate();
-
-
     const schema = yup.object().shape({
         firstName:
             yup.string()
@@ -46,10 +42,12 @@ function Register(): JSX.Element {
         const sendDataToRemoteServer= (user:UsersModel) =>{
             axios.post(urlService.urls.users , user )
             .then(res => {
-                store.dispatch(addedUserAction(res.data))
+                const user:UsersModel=res.data||{}
+                store.dispatch(addedUserAction(user))
+  
             console.log("Sending to remote server");
             notifyService.success("Data was sent!!");
-              navigate ('/orders'); 
+              navigate ('/order'); 
             })
             .catch(err => console.log(err));
          }; 

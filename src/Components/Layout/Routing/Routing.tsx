@@ -20,15 +20,16 @@ function Routing(): JSX.Element {
 			<Routes>
                 <Route path="/" element={<App/>}/>
                 <Route path="home" element={<Movies/>}/>
-                <Route index element ={<Home/>}/>
+                <Route index element ={<Movies/>}/>
                 <Route path="login" element={<Login/>}/>
                 <Route path="register" element={<Register/>}/>
-                {/* <Route path="about" element={<About/>}/> */}
+                <Route path="about" element={<About/>}/>
                 <Route path="addMovie" element={<AddMovie/>}/>
                 <Route path="movies" element={<Movies/>}/>
                 <Route path="ordersList" element={<OrdersList/>}/>
                 <Route path="order" element={<Order/>}/>
                 <Route path="Success" element={<Success/>}/>
+                <Route path="map" element={<Map/>}/>
                 <Route path="*" element={<Page404/>}/>
             </Routes>
         </div>

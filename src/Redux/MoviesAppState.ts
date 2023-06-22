@@ -3,12 +3,13 @@ import { MovieModel } from "../Models/MovieModel";
 
 interface MoviesState{
     movies: MovieModel[];
+    selectedMovie: MovieModel | null;
 
 }
 
 const initialState: MoviesState ={
     movies:[],
- 
+    selectedMovie: null,
     
 };
 
@@ -19,9 +20,11 @@ GOT_SINGLE_MOVIE = "GOT_SINGLE_MOVIE",
   UPDATED_MOVIE = "UPDATED_MOVIE",
   DELETED_MOVIE = "DELETED_MOVIE",
   REMOVED_MOVIES = "REMOVED_MOVIES",
+  SELECT_MOVIE = "SELECT_MOVIE",
 }
 const moviesSlice = createSlice({
     name: "movies",
+
     initialState,
     reducers: {
       gotAllMoviesAction(state, action: PayloadAction<MovieModel[]>) {
@@ -46,6 +49,9 @@ const moviesSlice = createSlice({
       removeMovies(state) {
         state.movies = [];
       },
+      selectMovieAction(state, action: PayloadAction<MovieModel>) {
+        state.selectedMovie = action.payload;
+      },
     },
   });
   export const {
@@ -55,6 +61,7 @@ const moviesSlice = createSlice({
     updatedMovieACtion,
     deletedMovieAction,
     removeMovies,
+    selectMovieAction,
   } = moviesSlice.actions;
   
   export const moviesReducer = moviesSlice.reducer;

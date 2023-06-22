@@ -6,14 +6,16 @@ import { LoginModel } from "../../../Models/LoginModel";
 import notifyService from "../../../Services/NotificationServices";
 import axios from "axios";
 import urlService from "../../../Services/UrlServices";
-import store from "../../../Redux/Store";
+import store, { RootState } from "../../../Redux/Store";
 import { addedUserAction, gotSingleUserAction } from "../../../Redux/UsersAppState";
 import { useNavigate } from "react-router-dom";
 import { UsersModel } from "../../../Models/UsersModel";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 
 function Login(): JSX.Element {
+    const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};
     const navigate = useNavigate();
     const schema = yup.object().shape({
     email:
@@ -48,15 +50,15 @@ function Login(): JSX.Element {
  
     return (
         <div className="Login">
-			<h1>This is Login</h1>      
+			<h1>Login</h1>      
 <form onSubmit={handleSubmit(sendDataToRemoteServer)}>
 
 
 {errors?.email&&<span>{errors.email.message}</span>}
-<input {...register ("email")} type="email" placeholder="Email..." defaultValue={"lavi.shiratzky@gmail.com"}/>
+<input {...register ("email")} type="email" placeholder="Email..." defaultValue={user.email}/>
 
 {errors?.password&&<span>{errors.password.message}</span>}
-<input {...register ("password")} type="password" placeholder="password..." name="password" defaultValue={"1234"}/>
+<input {...register ("password")} type="password" placeholder="password..." name="password" defaultValue={user.passWord}/>
 
 
 <button  type ="submit" disabled={!isValid}>Send</button>

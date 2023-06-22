@@ -4,10 +4,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import notifyService from "../../../Services/NotificationServices";
 import MovieCard from "../MovieCard/MovieCard";
-import store from "../../../Redux/Store";
+import store, { RootState } from "../../../Redux/Store";
 import urlService from "../../../Services/UrlServices";
 import { gotAllMoviesAction } from "../../../Redux/MoviesAppState";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+
 function Movies(): JSX.Element {
+
+
+    const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};
     const[movies,setMovies] = useState<MovieModel[]>(store.getState().moviesReducer.movies);
     const [selectedGenre, setSelectedGenre]= useState<string>("none")
     const [searchTerm,setSearchTerm]= useState<string>("")
