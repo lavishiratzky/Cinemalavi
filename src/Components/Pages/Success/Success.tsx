@@ -12,7 +12,7 @@ function Success(): JSX.Element {
             <p>Order Number: {order.orderId}</p>
             <p>Movie Name: {order.movieName}</p>
                  <p>Movie Date: {moment(order.movieDate).format('DD/MM/YYYY')}</p>
-                 <p>Ticket Number: {order.tickets}</p>
+                 <p>Tickets Number: {order.tickets}</p>
                  <p>User First Name: {order.userFirstName}</p>
                  <p>User Last Name: {order.userLastName}</p>
                  <p>User Email: {order.email}</p>

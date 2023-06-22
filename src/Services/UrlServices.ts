@@ -5,19 +5,21 @@ class Development extends Global{
         
         movies: "http://localhost:5035/api/movies",
        orders:  "http://localhost:5035/api/orders",
-       users: 'http://localhost:5035/api/users'
+       users: 'http://localhost:5035/api/users',
+       admins: "http://localhost:5035/api/admin"
 
 
     }
 }
 
-//"https://raw.githubusercontent.com/nogaoren/ordersDB/main/ordersDB", nogas database
+
 class Production extends Global{
     public urls ={
  
         movies: 'http://localhost:5035/api/movies',
         orders: "http://localhost:5035/api/orders",
-        users: 'http://localhost:5035/api/users'
+        users: 'http://localhost:5035/api/users',
+        admins: "http://localhost:5035/api/admin"
 
     }
 }

@@ -1,6 +1,6 @@
-export type Root = Root2[]
+export type Root = AdminModel[]
 
-export interface Root2 {
+export interface AdminModel {
   adminId: number
   email: string
   passWord: string
