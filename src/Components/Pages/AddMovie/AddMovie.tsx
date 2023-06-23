@@ -38,7 +38,7 @@ function AddMovie(): JSX.Element {
         genre:
             yup.string()
                 .required("Genre is required"),
-        length_minutes:
+        lengthMinutes:
             yup.number()
                 .moreThan(1)
                 .typeError('Length Must be more than 1 min.'),
@@ -65,8 +65,6 @@ function AddMovie(): JSX.Element {
                     store.dispatch(addedMovieAction(res.data));
                     notifyService.success('Added Movie Successfully');
                     console.log(res.data);
-                  
-                    // Navigate to previous screen
                     navigate('/movies');
                 })
                 .catch(err => {
@@ -83,26 +81,30 @@ function AddMovie(): JSX.Element {
 
                 {errors?.director && <span>{errors.director.message}</span>}
                 <input {...register("director")} type="text" placeholder="director..." name="director" />
-                {/*{
+
+                 {
                     errors.genre?.message ?   
                     <> <span>{errors?.genre?.message}</span></> :
                     <> <label htmlFor="genre">Genre</label> </>
                 }
-                 change the select to movie genre options 
                  <select
                     {...register("genre")} id="genre"  name="genre" >
                     <option value="" disabled={true} selected style={{ color: "gray" }}>Movie Genre...</option>
-                    <option value="DRAMA">Drama</option>
-                    <option value="CRIME">Crime</option>
-                    <option value="ACTION">Action</option>
-                    <option value="ADVENTURE">Adventure</option>
-                    <option value="SCI-FI">Science-Fiction</option>
-                    <option value="FANTASY">Fantasy</option>
-                    <option value="ROMANCE">Romance</option>
-                    <option value="HISTORY">History</option>
-                </select>   */}
-                 {errors?.genre && <span>{errors.genre.message}</span>}
-                <input {...register("genre")} type="text" placeholder="genre..." name="genre" />
+                   <option value="none">Filter by Genre</option>
+             <option value="Action">Action</option>
+             <option value="Crime">Crime</option>
+             <option value="Drama">Drama</option>
+             <option value="Romance">Romance</option>
+             <option value="History">History</option>
+             <option value="Fantasy">Fantasy</option>
+             <option value="Adventure">Adventure</option>
+             <option value="Thriller">Thriller</option>
+             <option value="Sci-Fi">Sci-Fi</option>
+             <option value="Comedy">Comedy</option>
+                </select>  
+
+                 {/* {errors?.genre && <span>{errors.genre.message}</span>}
+                <input {...register("genre")} type="text" placeholder="genre..." name="genre" /> */}
 
                 {errors?. lengthMinutes && <span>{errors. lengthMinutes.message}</span>}
                 <input {...register("lengthMinutes")} type="text" placeholder="length..." name="lengthMinutes" />

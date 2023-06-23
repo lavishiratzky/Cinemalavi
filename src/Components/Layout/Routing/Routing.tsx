@@ -14,6 +14,7 @@ import OrdersList from "../../Pages/OrdersList/OrdersList";
 import Order from "../../Pages/Order/Order";
 import Success from "../../Pages/Success/Success";
 import AdminLogin from "../../Pages/AdminLogin/AdminLogin";
+import DeleteMovie from "../../Pages/DeleteMovie/DeleteMovie";
 
 function Routing(): JSX.Element {
     return (
@@ -32,6 +33,7 @@ function Routing(): JSX.Element {
                 <Route path="Success" element={<Success/>}/>
                 <Route path="map" element={<Map/>}/>
                 <Route path="adminlogin" element={<AdminLogin/>}/>
+                <Route path="deletemovie" element={<DeleteMovie/>}/>
                 <Route path="*" element={<Page404/>}/>
             </Routes>
         </div>

@@ -10,7 +10,7 @@ import moment from 'moment'
 
 function OrdersList(): JSX.Element {
     const [searchTerm,setSearchTerm]= useState<string>("")
-    const tableHeaders = ["Order Id","Movie Date", "Movie Id", "Movie Name","Tickets", "User Id","FirstName","LastName", "Email"];
+    const tableHeaders = ["Order Id","Movie Date", "Movie Id", "Movie Name","Tickets", "User Id","F.Name","L.Name", "Email"];
     const[orders ,setOrders] = useState<OrderModel[]>(store.getState().ordersReducer.orders);
     useEffect(() => {
         if (orders.length ===0){

@@ -65,7 +65,7 @@ function Order(): JSX.Element {
         <div className="Order">
             
 
-        <select
+            {selectMovie?.movieId ? (<></>) : (<><select
   id="movieId"
   name="movieId"
   value={selectedMovie?.movieId || ''}
@@ -80,7 +80,7 @@ function Order(): JSX.Element {
     <option key={m.movieId} value={m.movieId}>{m.name}</option>
   ))}
 </select>
-
+</>)}
             <form onSubmit={handleSubmit(sendDataToRemoteServer)}>
             {
                     errors.movieDate?.message ?

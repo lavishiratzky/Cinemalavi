@@ -42,7 +42,7 @@ function AdminLogin(): JSX.Element {
                 console.log(admin)
             console.log("Sending to remote server");
             notifyService.success("You are  Admin!");
-          
+          navigate("/movies")
             })
             .catch(err =>{console.log(err)
                 notifyService.failure("You are not admin");
@@ -68,7 +68,7 @@ function AdminLogin(): JSX.Element {
 
 <button  type ="submit" disabled={!isValid}>Send</button>
             </form>
-            <p>{admin.email}</p>
+
         </div>
     );
 }

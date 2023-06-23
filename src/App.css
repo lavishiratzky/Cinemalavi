@@ -68,3 +68,7 @@
   height: auto;
   margin-top: 10px;
 }
+.App button{
+   background-color: var(--secondary-color)
+
+}
