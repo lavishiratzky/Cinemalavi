@@ -20,25 +20,19 @@ function AddMovie(): JSX.Element {
     const navigate = useNavigate();
     const [selectedGenre, setSelectedGenre]= useState<string>("none")
   
-    // const [image, setImage] = useState('');
-
-    // const handleChangeImage = (e: any) => {
-    //     setImage(URL.createObjectURL(e.target.files[0]));
-    //}
+  
     const schema = yup.object().shape({
-        //id:
-        // yup.string()
-        //    .required("Id is required"),
+    
          name:
-            yup.string()
-                .required("Title is required"),
+            yup.string(),
+                // .required("Title is required"),
         director:
-            yup.string()
-                .required("Director is required"),
+            yup.string(),
+                // .required("Director is required"),
         genre:
-            yup.string()
-                .required("Genre is required"),
-        lengthMinutes:
+            yup.string(),
+                // .required("Genre is required"),
+        length_Minutes:
             yup.number()
                 .moreThan(1)
                 .typeError('Length Must be more than 1 min.'),
@@ -46,8 +40,8 @@ function AddMovie(): JSX.Element {
         description:
             yup.string()
                 .min(3, 'Description must be at least 3 characters')
-                .max(30, 'Description must be at most 30 characters')
-                .required("Description is required"),
+                .max(30, 'Description must be at most 30 characters'),
+        //         .required("Description is required"),
          image:
          yup.string()
          .typeError('you must enter a direction to a picture form the web')
@@ -74,6 +68,7 @@ function AddMovie(): JSX.Element {
         }
     return (
         <div className="AddMovie">
+            <h1>This is Add Movie</h1>
             <form onSubmit={handleSubmit(sendDataToRemoteServer)}>
 
                 {errors?.name && <span>{errors.name.message}</span>}
@@ -89,8 +84,9 @@ function AddMovie(): JSX.Element {
                 }
                  <select
                     {...register("genre")} id="genre"  name="genre" >
+                    
                     <option value="" disabled={true} selected style={{ color: "gray" }}>Movie Genre...</option>
-                   <option value="none">Filter by Genre</option>
+            <option value="none">Filter by Genre</option>
              <option value="Action">Action</option>
              <option value="Crime">Crime</option>
              <option value="Drama">Drama</option>
@@ -103,11 +99,9 @@ function AddMovie(): JSX.Element {
              <option value="Comedy">Comedy</option>
                 </select>  
 
-                 {/* {errors?.genre && <span>{errors.genre.message}</span>}
-                <input {...register("genre")} type="text" placeholder="genre..." name="genre" /> */}
 
-                {errors?. lengthMinutes && <span>{errors. lengthMinutes.message}</span>}
-                <input {...register("lengthMinutes")} type="text" placeholder="length..." name="lengthMinutes" />
+                {errors?. length_Minutes && <span>{errors. length_Minutes.message}</span>}
+                <input {...register("length_Minutes")} type="text" placeholder="length..." name="lengthMinutes" />
 
                 {errors?.description && <span>{errors.description.message}</span>}
                 <input  {...register("description")} type="text" placeholder="description..." name="description" />

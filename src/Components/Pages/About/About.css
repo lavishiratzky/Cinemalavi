@@ -1,17 +1,52 @@
-
 .About {
-  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .About h1 {
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 24px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .About p {
-  font-size: 24px;
-  line-height: 1.5;
   margin-bottom: 10px;
-  text-align: start;
+  line-height: 1.5;
+}
+
+.About h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.About iframe {
+  width: 100%;
+  height: 270px;
+  border: 0;
+  margin-bottom: 20px;
+}
+
+.About .image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.About .image-container > div {
+  width: 48%;
+}
+
+.About .image-container img {
+  width: 100%;
+  height: auto;
+}
+
+.About .image-container iframe {
+  width: 100%;
 }

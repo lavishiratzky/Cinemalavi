@@ -1,3 +1,75 @@
 .AboutMe {
-	
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.text h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.text h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.text h5 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.text ol {
+  margin-bottom: 10px;
+}
+
+.text ol li {
+  margin-bottom: 5px;
+}
+
+.image {
+  flex: 1;
+  text-align: center;
+}
+
+.image img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.social-media {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.social-media a {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin: 0 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  text-align: center;
+  line-height: 50px;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.social-media a:hover {
+  background-color: #333;
 }

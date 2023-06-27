@@ -19,15 +19,16 @@ store.dispatch(removeAdmins());
                     <Link to="/addmovie">Add Movie</Link>
                     <Link to="/ordersList">Orders List</Link>
                     <Link to="/deletemovie">Delete Movie</Link>
-<button onClick={logOffHandler}>Log Off</button>
+                    <Link to="/editmovie">Edit Movie</Link>
+                    <button onClick={logOffHandler}>Log Off</button>
                 </>
             ) : (
                 <>
+
                     <Link to="/home">Home</Link>
                     <Link to="/login">Login</Link>
                     <Link to="/register">Register</Link>
                     <Link to="/about">About</Link>
-                    <Link to="/map">General Info.</Link>
                     <Link to="/adminlogin">Admins</Link>
                 </>
             )}

@@ -1,15 +1,4 @@
 
-// export type Root = MovieModel[]
-
-// export interface MovieModel {
-//   id: number
-//   name: string
-//   director: string
-//   genre: string
-//   length_minutes: number
-//   description: string
-//   image: string
-// }
 export type Root = MovieModel[]
 
 export interface MovieModel {
@@ -17,7 +6,7 @@ export interface MovieModel {
   name: string
   director: string
   genre: string
-  lengthMinutes?: number
+  length_Minutes?: number
   description?: string
   image?: string
   orders: any[]

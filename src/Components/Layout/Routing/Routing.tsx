@@ -15,6 +15,8 @@ import Order from "../../Pages/Order/Order";
 import Success from "../../Pages/Success/Success";
 import AdminLogin from "../../Pages/AdminLogin/AdminLogin";
 import DeleteMovie from "../../Pages/DeleteMovie/DeleteMovie";
+import AboutMe from "../../Pages/AboutMe/AboutMe";
+import EditMovie from "../../Pages/EditMovie/EditMovie";
 
 function Routing(): JSX.Element {
     return (
@@ -35,6 +37,8 @@ function Routing(): JSX.Element {
                 <Route path="adminlogin" element={<AdminLogin/>}/>
                 <Route path="deletemovie" element={<DeleteMovie/>}/>
                 <Route path="*" element={<Page404/>}/>
+                <Route path="aboutme" element={<AboutMe/>}/>
+                <Route path="editmovie" element={<EditMovie/>}/>
             </Routes>
         </div>
     );

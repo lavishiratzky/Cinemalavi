@@ -10,7 +10,6 @@ interface MovieCardProps{
 }
 
 function MovieCard(props: MovieCardProps): JSX.Element {
-  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};
@@ -32,10 +31,7 @@ function MovieCard(props: MovieCardProps): JSX.Element {
             <p>"{props.movie.name}"</p>
             <p>Director: {props.movie.director}</p>
             <p>Genre: {props.movie.genre}</p>
-            <p>Length: {props.movie.lengthMinutes} min.</p>
             <img src={props.movie.image} alt="image" />
-          
-           <p>{user.userId}</p>
         </div>
         
     );

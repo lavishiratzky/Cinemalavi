@@ -13,11 +13,11 @@ import { useNavigate } from "react-router-dom";
 
 function Movies(): JSX.Element {
 
-
     const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};
     const[movies,setMovies] = useState<MovieModel[]>(store.getState().moviesReducer.movies);
     const [selectedGenre, setSelectedGenre]= useState<string>("none")
     const [searchTerm,setSearchTerm]= useState<string>("")
+    const bestsellers= movies.slice(0,3)
     useEffect(() => {
         if (movies?.length ===0){
         axios.get<MovieModel[]>(urlService.urls.movies) 
@@ -39,6 +39,7 @@ function Movies(): JSX.Element {
     
     return (
         <div className="Movies">
+            <h1>Click on a movie to Order</h1>
             <h1><input type ="text" placeholder="Type a name of a movie" onChange={event=>{setSearchTerm(event.target.value)}}/></h1>
              <h1> <select onChange={selectGenre}>
              <option value="none">Filter by Genre</option>
@@ -53,7 +54,9 @@ function Movies(): JSX.Element {
              <option value="Sci-Fi">Sci-Fi</option>
              <option value="Comedy">Comedy</option>
          </select></h1> 
-            
+         <h1>Best Sellers</h1>
+         {bestsellers.map(m=><MovieCard key={'movie' + m.movieId} movie={m}/>)}
+        <h1> Our Movie List</h1>
  {movies
  .filter((val)=>{
                  if(val.name?.toLowerCase().includes(searchTerm.toLowerCase())){

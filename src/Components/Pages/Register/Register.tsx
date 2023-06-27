@@ -47,7 +47,7 @@ function Register(): JSX.Element {
   
             console.log("Sending to remote server");
             notifyService.success("Data was sent!!");
-              navigate ('/order'); 
+              navigate ('/movies'); 
             })
             .catch(err => console.log(err));
          }; 
