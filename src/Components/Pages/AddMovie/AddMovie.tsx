@@ -24,27 +24,28 @@ function AddMovie(): JSX.Element {
     const schema = yup.object().shape({
     
          name:
-            yup.string(),
-                // .required("Title is required"),
-        director:
-            yup.string(),
-                // .required("Director is required"),
+            yup.string()    
+            .required("Title is required"),
+         director:
+            yup.string()
+             .required("Director is required"),
         genre:
-            yup.string(),
-                // .required("Genre is required"),
+            yup.string()
+            .required("Genre is required"),
         length_Minutes:
             yup.number()
                 .moreThan(1)
-                .typeError('Length Must be more than 1 min.'),
-                // .required("Length is required"),
-        description:
-            yup.string()
+                .typeError('Length Must be more than 1 min.')
+                .required("Length is required"),
+         description:
+             yup.string()
                 .min(3, 'Description must be at least 3 characters')
-                .max(30, 'Description must be at most 30 characters'),
-        //         .required("Description is required"),
+                .max(30, 'Description must be at most 30 characters')
+                .required("Description is required"),
          image:
          yup.string()
-         .typeError('you must enter a direction to a picture form the web')
+        .typeError('you must enter a direction to a picture form the web')
+        .required("Description is required")
         
 
 
@@ -86,7 +87,6 @@ function AddMovie(): JSX.Element {
                     {...register("genre")} id="genre"  name="genre" >
                     
                     <option value="" disabled={true} selected style={{ color: "gray" }}>Movie Genre...</option>
-            <option value="none">Filter by Genre</option>
              <option value="Action">Action</option>
              <option value="Crime">Crime</option>
              <option value="Drama">Drama</option>
@@ -100,8 +100,8 @@ function AddMovie(): JSX.Element {
                 </select>  
 
 
-                {errors?. length_Minutes && <span>{errors. length_Minutes.message}</span>}
-                <input {...register("length_Minutes")} type="text" placeholder="length..." name="lengthMinutes" />
+                {errors?.length_Minutes && <span>{errors.length_Minutes.message}</span>}
+                <input {...register("length_Minutes")} type="text" placeholder="length..." name="length_Minutes" />
 
                 {errors?.description && <span>{errors.description.message}</span>}
                 <input  {...register("description")} type="text" placeholder="description..." name="description" />
