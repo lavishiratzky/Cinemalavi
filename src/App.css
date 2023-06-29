@@ -63,9 +63,11 @@
   margin-top: 0;
 }
 
+
 .MovieCard img {
   max-width: 100%;
-  height: auto;
+  height: 200px; /* Adjust the height to your desired size */
+  object-fit: cover; /* This property ensures the image maintains its aspect ratio */
   margin-top: 10px;
 }
 .App button{
