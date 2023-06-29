@@ -6,30 +6,30 @@ import notifyService from "../../../Services/NotificationServices";
 import MovieCard from "../MovieCard/MovieCard";
 import store, { RootState } from "../../../Redux/Store";
 import urlService from "../../../Services/UrlServices";
-import { gotAllMoviesAction } from "../../../Redux/MoviesAppState";
-import { useSelector } from "react-redux";
+import { gotAllMoviesAction  } from "../../../Redux/MoviesAppState";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
 function Movies(): JSX.Element {
-
-    const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};
-    const[movies,setMovies] = useState<MovieModel[]>(store.getState().moviesReducer.movies);
+const dispatch=useDispatch()
+    const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};// last user
+    const[movies,setMovies] = useState<MovieModel[]>(store.getState().moviesReducer.movies); // movies  in store 
     const [selectedGenre, setSelectedGenre]= useState<string>("none")
     const [searchTerm,setSearchTerm]= useState<string>("")
     const bestsellers= movies.slice(0,3)
     useEffect(() => {
-        if (movies?.length ===0){
+       if (movies?.length ===0){
         axios.get<MovieModel[]>(urlService.urls.movies) 
         .then(res =>{setMovies(res.data);
-        store.dispatch(gotAllMoviesAction(res.data))
-            notifyService.success("Data was collected!!")}
+         dispatch(gotAllMoviesAction(res.data))
+            notifyService.success("Wellcome to Cinema Lavi!")}
        )
         
        
         .catch(err => {console.log(err);
-            notifyService.failure("Data was Not collected!!")})
-        }
+            notifyService.failure("Unable to show movies:" + err)})
+       }
     },[])
     const selectGenre =(event: React.ChangeEvent<HTMLSelectElement>) =>{
         const value =event.target.value;
@@ -77,8 +77,7 @@ function Movies(): JSX.Element {
              return false;
               })
               .map(m=><MovieCard key={'movie' + m.movieId} movie={m}/>)}
-{/* TO SHOW ONLY THE FIRST 5 USE THIS BEFORE MAP .slice(0,5) */}
- {/* }).map(m=><MovieCard key={'movie' + m.id} movie={m}/>)}     */}
+
 
             
 		
@@ -86,3 +85,8 @@ function Movies(): JSX.Element {
 );
 }
 export default Movies;
+
+
+
+
+

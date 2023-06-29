@@ -7,15 +7,14 @@ import notifyService from "../../../Services/NotificationServices";
 import axios from "axios";
 import urlService from "../../../Services/UrlServices";
 import store, { RootState } from "../../../Redux/Store";
-import { addedUserAction, gotSingleUserAction } from "../../../Redux/UsersAppState";
+import { addedUserAction } from "../../../Redux/UsersAppState";
 import { useNavigate } from "react-router-dom";
 import { UsersModel } from "../../../Models/UsersModel";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 
 
 function Login(): JSX.Element {
-    const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};
+    const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};// to select the last user in th arrey
     const navigate = useNavigate();
     const schema = yup.object().shape({
     email:
@@ -42,7 +41,7 @@ function Login(): JSX.Element {
               navigate ('/order'); 
             })
             .catch(err =>{console.log(err)
-                notifyService.failure("You need to register before");
+                notifyService.failure("You need to register before " +err);
                 navigate ('/register');
         });
            

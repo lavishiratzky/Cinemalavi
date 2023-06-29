@@ -5,7 +5,7 @@ import store, { RootState } from "../../../Redux/Store";
 import { removeAdmins } from "../../../Redux/AdminAppState";
 function Menu(): JSX.Element {
     const navigate = useNavigate();
-    const admin = useSelector((state: RootState) => state.adminsReducer.admins.slice(-1)[0]) || {};
+    const admin = useSelector((state: RootState) => state.adminsReducer.admins.slice(-1)[0]) || {};// to listen to admin logging in and to display the right menu
     const logOffHandler=()=>{
 store.dispatch(removeAdmins());
         navigate("/movies")

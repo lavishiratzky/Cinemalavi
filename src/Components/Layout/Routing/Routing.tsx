@@ -1,8 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import App from "../../../App";
 import About from "../../Pages/About/About";
-import Contact_us from "../../Pages/Contact_us/Contact_us";
-import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Page404 from "../../Pages/Page404/Page404";
 import Register from "../../Pages/Register/Register";

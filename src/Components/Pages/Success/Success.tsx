@@ -4,7 +4,7 @@ import { OrderModel } from "../../../Models/OrderModel";
 import { useSelector } from "react-redux";
 import moment from "moment";
 function Success(): JSX.Element {
-    const order = useSelector((state: RootState) => state.ordersReducer.orders.slice(-1)[0]) || {};
+    const order = useSelector((state: RootState) => state.ordersReducer.orders.slice(-1)[0]) || {};// get the last order 
 
     return (
         <div className="Success">

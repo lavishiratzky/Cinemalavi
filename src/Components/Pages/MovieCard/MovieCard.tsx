@@ -16,18 +16,17 @@ function MovieCard(props: MovieCardProps): JSX.Element {
 
   const MovieCardHandler = () => {
     store.dispatch(selectMovieAction(props.movie));
-    console.log(user)
     if (user&&user.userId) {
-      navigate("/order");
+      navigate("/order");// if theres a user loged in- navegate to order
     } else {
-      navigate("/login");
+      navigate("/login"); // if not, navigate to login 
     }
   };
 
 
     return (
         <div className="MovieCard" onClick={MovieCardHandler}>
-            <p>Id number: {props.movie.movieId}</p>
+
             <p>"{props.movie.name}"</p>
             <p>Director: {props.movie.director}</p>
             <p>Genre: {props.movie.genre}</p>

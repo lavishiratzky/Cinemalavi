@@ -16,10 +16,10 @@ import { useSelector } from "react-redux";
 
 
 function Order(): JSX.Element {
-    const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};
-    const [selectedMovie, setSelectedMovie] = useState<MovieModel | undefined>();    
-    const[movies,setMovies] = useState<MovieModel[]>(store.getState().moviesReducer.movies);
-    const  selectMovie =useSelector((state: RootState) => state.moviesReducer.selectedMovie);
+    const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};// the last user that loged in.
+    const [selectedMovie, setSelectedMovie] = useState<MovieModel | undefined>(); // amovie that was chosen only in the order page    
+    const[movies,setMovies] = useState<MovieModel[]>(store.getState().moviesReducer.movies);// movie list for the selct dropdowm, if am movie was not chosen in the home page 
+    const  selectMovie =useSelector((state: RootState) => state.moviesReducer.selectedMovie);// if a movie was chosen in the home page 
     const navigate = useNavigate();
     const schema = yup.object().shape({
 
@@ -41,8 +41,8 @@ function Order(): JSX.Element {
         
     const sendDataToRemoteServer = (Order: OrderModel) => {
         Order.movieName = selectedMovie?.name || selectMovie?.name||"" // Include movieName in the order object
-        Order.movieId = selectedMovie?.movieId || selectMovie?.movieId||0;
-        Order.userId= user.userId;
+        Order.movieId = selectedMovie?.movieId || selectMovie?.movieId||0;// Include movieId in the order object
+        Order.userId= user.userId;//include user propertis in the order object 
         Order.email = user.email||("");
         Order.userFirstName = user.firstName||("");
         Order.userLastName = user.lastName||("");
@@ -98,30 +98,15 @@ function Order(): JSX.Element {
                     type="date"
                     placeholder="Order Date..." />
 
-                   <p>{selectMovie?.name}</p>
+                
                  {errors.tickets?.message ? <>  <span>{errors?.tickets?.message}</span> </> :   <>  <label htmlFor="tickets">tickets</label> </>}
                  <input {...register("tickets")}id="tickets" name="tickets" type="number"step="1" min={0} placeholder="tickets..." />
                   
-                {/* {errors?.userFirstName && <span>{errors.userFirstName.message}</span>}
-                <input {...register("userFirstName")} type="hidden" placeholder="First Name..." defaultValue={user?.firstName}/>
-
-                {errors?.userLastName && <span>{errors.userLastName.message}</span>}
-                <input {...register("userLastName")}type="hidden" placeholder="Last Name..."defaultValue={user?.lastName} />
- 
-                {errors?.email && <span>{errors.email.message}</span>}
-                <input {...register("email")} type="hidden" placeholder=" Email..."defaultValue={user?.email} /> 
-
-                {errors?.userId && <span>{errors.userId.message}</span>}
-                <input {...register("userId")}  type="hidden" placeholder=" userId.."defaultValue={user?.userId} /> */}
+               
   
                 <button type="submit" disabled={!isValid}>Send</button>
             </form>
-            {/* <p>{selectedMovie?.name}</p>
-            <p>{selectedMovie?.movieId}</p>
-            <p>{user.email}</p>
-            <p>{user.firstName}</p>
-            <p>{user.lastName}</p>
-            <p>{user.userId}</p> */}
+         
             
            
             
