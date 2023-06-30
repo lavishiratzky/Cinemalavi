@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 function Movies(): JSX.Element {
 const dispatch=useDispatch()
     const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};// last user
+    const admin = useSelector((state: RootState) => state.adminsReducer.admins.slice(-1)[0]) || {};
     const[movies,setMovies] = useState<MovieModel[]>(store.getState().moviesReducer.movies); // movies  in store 
     const [selectedGenre, setSelectedGenre]= useState<string>("none")
     const [searchTerm,setSearchTerm]= useState<string>("")
@@ -30,7 +31,7 @@ const dispatch=useDispatch()
         .catch(err => {console.log(err);
             notifyService.failure("Unable to show movies:" + err)})
        }
-    },[])
+    },[movies])
     const selectGenre =(event: React.ChangeEvent<HTMLSelectElement>) =>{
         const value =event.target.value;
         console.log({event,value});
@@ -39,7 +40,8 @@ const dispatch=useDispatch()
     
     return (
         <div className="Movies">
-            <h1>Click on a movie to Order</h1>
+          {admin&&admin.adminId ? <h1>Click on a movie Edit</h1> : <h1>Click on a movie to Order</h1>}
+
             <h1><input type ="text" placeholder="Type a name of a movie" onChange={event=>{setSearchTerm(event.target.value)}}/></h1>
              <h1> <select onChange={selectGenre}>
              <option value="none">Filter by Genre</option>
@@ -56,7 +58,7 @@ const dispatch=useDispatch()
          </select></h1> 
          <h1>Best Sellers</h1>
          {bestsellers.map(m=><MovieCard key={'movie' + m.movieId} movie={m}/>)}
-        <h1> Our Movie List</h1>
+        <h1> Click on a Movie to Order</h1>
  {movies
  .filter((val)=>{
                  if(val.name?.toLowerCase().includes(searchTerm.toLowerCase())){

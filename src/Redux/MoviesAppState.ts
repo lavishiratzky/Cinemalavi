@@ -43,7 +43,7 @@ const moviesSlice = createSlice({
         state.movies[idx] = action.payload;
       },
       deletedMovieAction(state, action: PayloadAction<number>) {
-        
+
         state.movies = state.movies.filter((movie) => movie.movieId !== action.payload);
       },
       removeMovies(state) {
@@ -52,6 +52,10 @@ const moviesSlice = createSlice({
       selectMovieAction(state, action: PayloadAction<MovieModel>) {
         state.selectedMovie = action.payload;
       },
+      removeSelectedMovie(state) {
+        state.selectedMovie = null;
+      },
+      
     },
   });
   export const {
@@ -62,6 +66,7 @@ const moviesSlice = createSlice({
     deletedMovieAction,
     removeMovies,
     selectMovieAction,
+    removeSelectedMovie,
   } = moviesSlice.actions;
   
   export const moviesReducer = moviesSlice.reducer;

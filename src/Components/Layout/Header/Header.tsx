@@ -6,7 +6,9 @@ function Header(): JSX.Element {
         <div className="Header">
 
 			<h1>This is my App</h1>
-            <ToggleTheme/>
+            <div className="ToggleThemeWrapper">
+                <ToggleTheme />
+            </div>
         </div>
     );
 }

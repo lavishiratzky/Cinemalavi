@@ -6,16 +6,16 @@ import { MovieModel } from "../../../Models/MovieModel";
 import { useState } from "react";
 import urlService from "../../../Services/UrlServices";
 import axios from "axios";
-import store from "../../../Redux/Store";
+import store, { RootState } from "../../../Redux/Store";
 import { addedMovieAction } from "../../../Redux/MoviesAppState";
 import notifyService from "../../../Services/NotificationServices";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
 
 function AddMovie(): JSX.Element {
-
+    const movies = useSelector((state: RootState) => state.moviesReducer.movies.length);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [selectedGenre, setSelectedGenre]= useState<string>("none")
@@ -57,7 +57,7 @@ function AddMovie(): JSX.Element {
 
             axios.post(urlService.urls.movies, movie)
                 .then(res => {
-                    store.dispatch(addedMovieAction(res.data));
+                    dispatch(addedMovieAction(res.data));
                     notifyService.success('Added Movie Successfully');
                     console.log(res.data);
                     navigate('/movies');

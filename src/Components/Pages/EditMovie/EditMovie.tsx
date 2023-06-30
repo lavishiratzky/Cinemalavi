@@ -14,7 +14,7 @@ import { updatedMovieACtion } from "../../../Redux/MoviesAppState";
 import notifyService from "../../../Services/NotificationServices";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Multiselect from "multiselect-react-dropdown";
+
 
 
 
@@ -22,42 +22,49 @@ function EditMovie(): JSX.Element {
     const movies = useSelector((state: RootState) => state.moviesReducer.movies)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [selectedMovie, setSelectedMovie] = useState<MovieModel | undefined>();  
+    const selectedMovie = useSelector(
+      (state: RootState) => state.moviesReducer.selectedMovie||null
+    );
+   
+    
     const schema = yup.object().shape({
       director:
-         yup.string(),
+         yup.string()
          
-      //     .required("Director is required"),
+          .required("Director is required"),
      genre:
-         yup.string(),
-    //      .required("Genre is required"),
+         yup.string()
+         .required("Genre is required"),
      length_Minutes:
-         yup.number(),
-    //          .moreThan(1)
-    //          .typeError('Length Must be more than 1 min.')
-    //          .required("Length is required"),
+         yup.number()
+             .moreThan(1)
+             .typeError('Length Must be more than 1 min.')
+             .required("Length is required"),
       description:
-          yup.string(),
-            //  .min(3, 'Description must be at least 3 characters')
-            //  .max(30, 'Description must be at most 30 characters'),
-      //        .required("Description is required"),
+          yup.string()
+             .min(3, 'Description must be at least 3 characters')
+             .max(30, 'Description must be at most 30 characters')
+             .required("Description is required"),
       image:
       yup.string()
-    //  .typeError('you must enter a direction to a picture form the web')
-    //  .required("Description is required")
+     .typeError('you must enter a direction to a picture form the web')
+     .required("Description is required")
      
 
 
  });
+
+
     const { register, handleSubmit, formState: { errors, isDirty, isValid } } =
-        useForm<MovieModel>({ mode: "all", resolver: yupResolver(schema) });
+        useForm<MovieModel>({  mode: "all", resolver: yupResolver(schema) });
         
+
         const sendDataToRemoteServer = (movie: MovieModel) => {
          
             axios.put(urlService.urls.movies + "/" + selectedMovie?.movieId , movie)
-                .then(res => {
-                    store.dispatch(updatedMovieACtion(res.data));
-                    notifyService.success('Updated Movie Successfully');
+            .then(res => {
+                   dispatch(updatedMovieACtion(res.data));
+                    notifyService.success(' Successfully Updated Movie');
                     console.log(res.data);
                     navigate('/movies');
                 })
@@ -70,21 +77,7 @@ function EditMovie(): JSX.Element {
     return (
         <div className="EditMovie">
           <h1>This is Edit</h1>
-      <select
-  id="movieId"
-  name="movieId"
-  value={selectedMovie?.movieId || ''}
-  onChange={e => {
-    const selectedMovieId = Number(e.target.value);
-    const movie = movies.find(m => m.movieId === selectedMovieId);
-    setSelectedMovie(movie);
-  }}
->
-  <option value="" style={{ color: 'gray' }}>Movie Name</option>
-  {movies.map((m) => (
-    <option key={m.movieId} value={m.movieId}>{m.name}</option>
-  ))}
-</select>
+ 
  <form onSubmit={handleSubmit(sendDataToRemoteServer)}>
 
 {errors?.director && <span>{errors.director.message}</span>}
@@ -96,7 +89,7 @@ function EditMovie(): JSX.Element {
                 }
                  <select
                     {...register("genre")} id="genre"  name="genre" >
-                    <option value={selectedMovie?.genre} disabled={true} selected style={{ color: "gray" }} defaultValue={selectedMovie?.genre}>Movie Genre...</option>
+                    <option value={selectedMovie?.genre} disabled={true} selected style={{ color: "gray" }} defaultValue={selectedMovie?.genre}>{selectedMovie?.genre}</option>
              <option value="Action">Action</option>
              <option value="Crime">Crime</option>
              <option value="Drama">Drama</option>
@@ -123,6 +116,7 @@ function EditMovie(): JSX.Element {
 
 
         </div>
+        
     );
 }
 

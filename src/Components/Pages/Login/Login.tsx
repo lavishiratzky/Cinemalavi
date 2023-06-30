@@ -41,7 +41,7 @@ function Login(): JSX.Element {
               navigate ('/order'); 
             })
             .catch(err =>{console.log(err)
-                notifyService.failure("You need to register before " +err);
+                notifyService.failure("You need to register before: " +err);
                 navigate ('/register');
         });
            

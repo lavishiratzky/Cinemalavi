@@ -13,10 +13,13 @@ function MovieCard(props: MovieCardProps): JSX.Element {
   const navigate = useNavigate();
 
   const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};
-
+  const admin = useSelector((state: RootState) => state.adminsReducer.admins.slice(-1)[0]) || {};
   const MovieCardHandler = () => {
     store.dispatch(selectMovieAction(props.movie));
-    if (user&&user.userId) {
+    if(admin&&admin.adminId){
+      navigate("/editmovie")
+    }
+     else if (user&&user.userId) {
       navigate("/order");// if theres a user loged in- navegate to order
     } else {
       navigate("/login"); // if not, navigate to login 
