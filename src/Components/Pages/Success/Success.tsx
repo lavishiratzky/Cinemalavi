@@ -3,7 +3,7 @@ import store, { RootState } from "../../../Redux/Store";
 import { OrderModel } from "../../../Models/OrderModel";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import {  removeSelectedMovie } from "../../../Redux/MoviesAppState"; // Update the import statement
+import {  removeSelectedMovie } from "../../../Redux/MoviesAppState"; 
 import { useNavigate } from "react-router-dom";
 
 function Success(): JSX.Element {
@@ -14,7 +14,7 @@ function Success(): JSX.Element {
     navigate("/movies")
   }
 
-  // Dispatch the deleteSelectMovieAction to remove the selected movie
+ 
   dispatch( removeSelectedMovie());
 
   return (

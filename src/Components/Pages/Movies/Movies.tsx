@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 function Movies(): JSX.Element {
-    const [noMovies, SetNoMovies] =useState<boolean>(false)
+  
     const dispatch=useDispatch()
     const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};// last user
     const admin = useSelector((state: RootState) => state.adminsReducer.admins.slice(-1)[0]) || {};
@@ -94,7 +94,6 @@ function Movies(): JSX.Element {
               })
               .map(m=><MovieCard key={'movie' + m.movieId} movie={m}/>)
               }
-
 
             
 		

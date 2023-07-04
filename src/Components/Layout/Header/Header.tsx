@@ -5,9 +5,12 @@ import { RootState } from "../../../Redux/Store";
 
 function Header(): JSX.Element {
     const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};
+    const admin = useSelector((state: RootState) => state.adminsReducer.admins.slice(-1)[0]) || {};
     return (
         <div className="Header">
 {user.firstName&&<h3>Welcome {user.firstName}! </h3>}
+{admin.email&&<h3>Welcome master!!</h3>}
+
 			<h1>Welcome  to  Cinema Lavi</h1>
             <div className="ToggleThemeWrapper">
                 <ToggleTheme />

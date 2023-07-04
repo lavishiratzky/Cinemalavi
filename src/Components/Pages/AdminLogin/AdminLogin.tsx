@@ -13,10 +13,12 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AdminModel } from "../../../Models/AdminModel";
 import { addedAdminAction } from "../../../Redux/AdminAppState";
+import { removeUsers } from "../../../Redux/UsersAppState";
 
 
 
 function AdminLogin(): JSX.Element {
+    const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};//listens to changes in users.
     const admin = useSelector((state: RootState) => state.adminsReducer.admins.slice(-1)[0]) || {};
     const navigate = useNavigate();
     const schema = yup.object().shape({
@@ -41,6 +43,7 @@ function AdminLogin(): JSX.Element {
                 console.log(admin)
             console.log("Sending to remote server");
             notifyService.success("You are  Admin!");
+            store.dispatch(removeUsers());
           navigate("/movies")
             })
             .catch(err =>{console.log(err)

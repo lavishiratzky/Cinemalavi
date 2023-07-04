@@ -16,9 +16,7 @@ import { useSelector } from "react-redux";
 
 
 function Order(): JSX.Element {
-    const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};// the last user that loged in.
-    const [selectedMovie, setSelectedMovie] = useState<MovieModel | undefined>(); // amovie that was chosen only in the order page    
-    const[movies,setMovies] = useState<MovieModel[]>(store.getState().moviesReducer.movies);// movie list for the selct dropdowm, if am movie was not chosen in the home page 
+    const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};//listens to changes in users.
     const  selectMovie =useSelector((state: RootState) => state.moviesReducer.selectedMovie);// if a movie was chosen in the home page 
     const navigate = useNavigate();
     const schema = yup.object().shape({
@@ -40,8 +38,8 @@ function Order(): JSX.Element {
         useForm<OrderModel>({ mode: "all", resolver: yupResolver(schema) });
         
     const sendDataToRemoteServer = (Order: OrderModel) => {
-        Order.movieName = selectedMovie?.name || selectMovie?.name||"" // Include movieName in the order object
-        Order.movieId = selectedMovie?.movieId || selectMovie?.movieId||0;// Include movieId in the order object
+        Order.movieName =  selectMovie?.name||"" // Include movieName in the order object
+        Order.movieId =selectMovie?.movieId||0;// Include movieId in the order object
         Order.userId= user.userId;//include user propertis in the order object 
         Order.email = user.email||("");
         Order.userFirstName = user.firstName||("");

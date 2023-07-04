@@ -1,60 +1,13 @@
-/* .OrdersList {
-	
-}
-table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-    font-size: 16px;
-  }
 
-  th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-
-  thead th {
-    background-color: #f2f2f2;
-    color: #444;
-  }
-
-  tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-
-  tbody td:before {
-    content: attr(data-label);
-    font-weight: bold;
-    display: inline-block;
-    width: 120px;
-  }
-
-  @media (max-width: 600px) {
-    table, thead, tbody, th, td, tr {
-      display: block;
-    }
-
-    tbody td:before {
-      content: attr(data-label);
-      font-weight: bold;
-      display: inline-block;
-      width: 98%;
-      margin-bottom: 10px;
-    }
- 
-  }
- */
  .OrdersList {
   position: relative;
-  padding-top: 50px; /* adjust padding as needed */
+  padding-top: 50px; 
 }
 
 .OrdersList table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: -1px; /* adjust margin as needed */
+  margin-top: -1px; 
 }
 
 .OrdersList thead,
@@ -64,7 +17,7 @@ table {
 }
 
 .OrdersList tbody {
-  height: 400px; /* adjust height as needed */
+  height: 400px;
   overflow-y: auto;
   overflow-x: hidden;
 }
