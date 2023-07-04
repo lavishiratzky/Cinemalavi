@@ -6,7 +6,7 @@ import { MovieModel } from "../../../Models/MovieModel";
 import { useState } from "react";
 import urlService from "../../../Services/UrlServices";
 import axios from "axios";
-import store, { RootState } from "../../../Redux/Store";
+import { RootState } from "../../../Redux/Store";
 import { addedMovieAction } from "../../../Redux/MoviesAppState";
 import notifyService from "../../../Services/NotificationServices";
 import { useDispatch, useSelector } from "react-redux";
@@ -64,7 +64,7 @@ function AddMovie(): JSX.Element {
                 })
                 .catch(err => {
                     console.log(err);
-                    notifyService.failure('Unable to Add movie : ' + err);
+                    notifyService.failure('Unable to Add movie : ' + err.response.data);
                 });
         }
     return (

@@ -64,7 +64,7 @@ function EditMovie(): JSX.Element {
             axios.put(urlService.urls.movies + "/" + selectedMovie?.movieId , movie)
             .then(res => {
                    dispatch(updatedMovieACtion(res.data));
-                    notifyService.success(' Successfully Updated Movie');
+                    notifyService.success(' Successfully Updated Movie'+ movie.name);
                     console.log(res.data);
                     navigate('/movies');
                 })

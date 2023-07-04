@@ -62,14 +62,14 @@
   height: 50px;
   margin: 0 10px;
   border-radius: 50%;
-  background-color: #ccc;
+  background-color: var(--background-color);
   text-align: center;
   line-height: 50px;
-  color: #fff;
+  color: var(--secondary-color);;
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
 
 .social-media a:hover {
-  background-color: #333;
+  background-color:var(--background-color);
 }

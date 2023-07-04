@@ -10,7 +10,6 @@
 .App .Header{
   width: 100%;
   grid-column:span 12;
-  /* background-color: var(--background-color); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,6 +70,9 @@
 .App button{
    background-color: var(--secondary-color)
 
+}
+.App button:hover {
+  background-color:var(--primary-color);;
 }
 span{
   color:red

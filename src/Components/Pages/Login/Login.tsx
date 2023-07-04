@@ -37,8 +37,8 @@ function Login(): JSX.Element {
                 store.dispatch(addedUserAction(user))
                 console.log(user)
             console.log("Sending to remote server");
-            notifyService.success("Lets order a Movie!");
-              navigate ('/order'); 
+            notifyService.success("hey " + user.firstName+"," +" Lets order a Movie!");
+              navigate ('/movies'); 
             })
             .catch(err =>{console.log(err)
                 notifyService.failure("You need to register before: " +err);

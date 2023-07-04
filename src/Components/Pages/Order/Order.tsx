@@ -64,23 +64,6 @@ function Order(): JSX.Element {
     return (
         <div className="Order">
             
-
-            {selectMovie?.movieId ? (<></>) : (<><select
-  id="movieId"
-  name="movieId"
-  value={selectedMovie?.movieId || ''}
-  onChange={e => {
-    const selectedMovieId = Number(e.target.value);
-    const movie = movies.find(m => m.movieId === selectedMovieId);
-    setSelectedMovie(movie);
-  }}
->
-  <option value="" style={{ color: 'gray' }}>Movie Name</option>
-  {movies.map((m) => (
-    <option key={m.movieId} value={m.movieId}>{m.name}</option>
-  ))}
-</select>
-</>)}
             <form onSubmit={handleSubmit(sendDataToRemoteServer)}>
             {
                     errors.movieDate?.message ?

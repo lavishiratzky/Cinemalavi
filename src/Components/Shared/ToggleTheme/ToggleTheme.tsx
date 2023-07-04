@@ -8,13 +8,10 @@ import { FaMoon, FaSun,  } from "react-icons/fa";
 function ToggleTheme(): JSX.Element {
     const [theme, setTheme] = useState<Theme>(store.getState().themeReducer.theme);
     const changeTheme = () => {
-      if (theme === 'light-mode')
-      {setTheme('dark-mode')}
-    else{
-        setTheme('light-mode')
-    } 
+        const defaultTheme = theme==='light-mode'?'dark-mode': 'light-mode';
+        setTheme(defaultTheme);
 
-    store.dispatch(toggleTheme(theme));
+    store.dispatch(toggleTheme(defaultTheme));
     }
     return (
         <div className="ToggleTheme">

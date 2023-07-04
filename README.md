@@ -1,17 +1,19 @@
-dependecies and versions:
+#  This is a Fullstack course Final Project
+By Lavi Sheratzky 
+## Usage
+I used React technology for frontend , and C# & SQL for backend
+
+### dependecies and versions:
+
     "@hookform/resolvers": "^3.0.0",
     "@reduxjs/toolkit": "^1.9.5",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
+    
     "@types/node": "^16.18.18",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.3.4",
     "moment": "^2.29.4",
-    "multiselect-react-dropdown": "^2.0.25",
     "notyf": "^3.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

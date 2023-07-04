@@ -8,11 +8,11 @@ import store, { RootState } from "../../../Redux/Store";
 import urlService from "../../../Services/UrlServices";
 import { gotAllMoviesAction  } from "../../../Redux/MoviesAppState";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 
 function Movies(): JSX.Element {
-const dispatch=useDispatch()
+    const [noMovies, SetNoMovies] =useState<boolean>(false)
+    const dispatch=useDispatch()
     const user = useSelector((state: RootState) => state.usersReducer.users.slice(-1)[0]) || {};// last user
     const admin = useSelector((state: RootState) => state.adminsReducer.admins.slice(-1)[0]) || {};
     const[movies,setMovies] = useState<MovieModel[]>(store.getState().moviesReducer.movies); // movies  in store 
@@ -24,7 +24,7 @@ const dispatch=useDispatch()
         axios.get<MovieModel[]>(urlService.urls.movies) 
         .then(res =>{setMovies(res.data);
          dispatch(gotAllMoviesAction(res.data))
-            notifyService.success("Wellcome to Cinema Lavi!")}
+            notifyService.success("Welcome to Cinema Lavi!")}
        )
         
        
@@ -40,9 +40,12 @@ const dispatch=useDispatch()
     
     return (
         <div className="Movies">
-          {admin&&admin.adminId ? <h1>Click on a movie Edit</h1> : <h1>Click on a movie to Order</h1>}
-
+          {admin&&admin.adminId ? <h1>Click on a movie to Edit</h1> : <h1> Click on a Movie to Order</h1>}
+          {admin.adminId? <></>: <h1>Best Sellers</h1>}
+         {admin.adminId? <></> : bestsellers.map(m=><MovieCard key={'movie' + m.movieId} movie={m}/>)}
+<h3>Search by Movie name </h3>
             <h1><input type ="text" placeholder="Type a name of a movie" onChange={event=>{setSearchTerm(event.target.value)}}/></h1>
+            <h3>Search by Genre </h3>
              <h1> <select onChange={selectGenre}>
              <option value="none">Filter by Genre</option>
              <option value="Action">Action</option>
@@ -56,29 +59,41 @@ const dispatch=useDispatch()
              <option value="Sci-Fi">Sci-Fi</option>
              <option value="Comedy">Comedy</option>
          </select></h1> 
-         <h1>Best Sellers</h1>
-         {bestsellers.map(m=><MovieCard key={'movie' + m.movieId} movie={m}/>)}
-        <h1> Click on a Movie to Order</h1>
- {movies
+        
+       
+ {
+ movies
  .filter((val)=>{
                  if(val.name?.toLowerCase().includes(searchTerm.toLowerCase())){
+                   
                     return val
+                 
                 }
                 else if (searchTerm===""){
                     return store.dispatch
                 }
-                return false;
+                
+                return false ;
+                
             })
             .filter((val)=>{
                 if(val.genre?.toLowerCase().split(',').map(v=>v.trim()).includes(selectedGenre.toLowerCase()) ) {
                     return true
+                  
                 }
                 else if(selectedGenre ==='none') {
+                   
                     return true
+                   
                 }
-             return false;
+               
+                  return false
+                 
+             
+            
               })
-              .map(m=><MovieCard key={'movie' + m.movieId} movie={m}/>)}
+              .map(m=><MovieCard key={'movie' + m.movieId} movie={m}/>)
+              }
 
 
             

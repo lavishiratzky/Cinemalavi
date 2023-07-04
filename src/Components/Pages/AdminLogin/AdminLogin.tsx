@@ -10,7 +10,6 @@ import store, { RootState } from "../../../Redux/Store";
 
 import { useNavigate } from "react-router-dom";
 
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { AdminModel } from "../../../Models/AdminModel";
 import { addedAdminAction } from "../../../Redux/AdminAppState";

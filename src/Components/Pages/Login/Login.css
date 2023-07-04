@@ -14,15 +14,6 @@
         width: 300px;
       }
       
-      button {
-        padding: 10px 20px;
-        margin-top: 20px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
       
       button:disabled {
         background-color: #ddd;
@@ -30,8 +21,5 @@
         cursor: default;
       }
       
-      button:hover {
-        background-color: #3e8e41;
-      }
-      
-	
+
+       

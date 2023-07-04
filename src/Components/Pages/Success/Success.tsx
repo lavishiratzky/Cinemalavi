@@ -4,10 +4,15 @@ import { OrderModel } from "../../../Models/OrderModel";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import {  removeSelectedMovie } from "../../../Redux/MoviesAppState"; // Update the import statement
+import { useNavigate } from "react-router-dom";
 
 function Success(): JSX.Element {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const order = useSelector((state: RootState) => state.ordersReducer.orders.slice(-1)[0]) || {};
+  const toHome=()=>{
+    navigate("/movies")
+  }
 
   // Dispatch the deleteSelectMovieAction to remove the selected movie
   dispatch( removeSelectedMovie());
@@ -22,6 +27,7 @@ function Success(): JSX.Element {
       <p>User First Name: {order.userFirstName}</p>
       <p>User Last Name: {order.userLastName}</p>
       <p>User Email: {order.email}</p>
+      <button onClick={toHome}>Back to Home</button>
     </div>
   );
 }

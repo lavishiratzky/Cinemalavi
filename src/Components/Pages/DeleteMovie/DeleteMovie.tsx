@@ -43,8 +43,6 @@ function DeleteMovie(): JSX.Element {
   };
 
   useEffect(() => {
-    // You can dispatch an action here to fetch movies from the server
-    // and update the Redux store if needed.
   }, [movies]);
 
   return (

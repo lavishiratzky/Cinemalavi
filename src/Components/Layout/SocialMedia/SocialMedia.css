@@ -1,13 +1,14 @@
 .SocialMedia a {
 	display: inline-block;
 	margin-right: 10px;
-	color: #333;
+	color:var(--primary-color);
 	text-decoration: none;
 	transition: all 0.2s ease-in-out;
   }
   
   .SocialMedia a:hover {
-	color: #0077b5;
+	color: var(--secondary-color);
+  
   }
   
   .SocialMedia a:focus {
