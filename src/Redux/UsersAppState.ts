@@ -34,13 +34,11 @@ const usersSlice = createSlice({
       },
       updatedUserACtion(state, action: PayloadAction<UsersModel>) {
         const idx = state.users.findIndex(
-          // (movie) => movie.id === action.payload.id
           (user) => user.userId=== action.payload.userId
         );
         state.users[idx] = action.payload;
       },
       deletedUserAction(state, action: PayloadAction<number>) {
-        // state.movies = state.movies.filter((movie) => movie.id !== action.payload);
         state.users = state.users.filter((user) => user.userId !== action.payload);
       },
       removeUsers(state) {
